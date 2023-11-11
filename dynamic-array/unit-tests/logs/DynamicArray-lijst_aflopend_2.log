@@ -3,6 +3,7 @@ Cases\DynamicArray::__set_state(array(
   SplFixedArray::__set_state(array(
      0 => 1,
      1 => -10033224,
+     2 => NULL,
   )),
    'size' => 2,
 ))

@@ -9,7 +9,7 @@ class DynamicArray
     private SplFixedArray $array;
     private int $size = 0;
 
-    public function __construct(int $size = 1) {
+    public function __construct(int $size = 0) {
         $this->array = new SplFixedArray($size);
     }
 
@@ -20,7 +20,7 @@ class DynamicArray
 
     public function set(int $key, mixed $value): void
     {
-        while (($key / $this->array->getSize()) >= 1) {
+        while ( $this->array->getSize() == 0 || ($key / $this->array->getSize()) >= 1 ) {
             $this->resize();
         }
 
@@ -41,15 +41,33 @@ class DynamicArray
         $this->size++;
     }
 
+    public function remove(int $index): void
+    {
+        $this->array[$index] = null;
+        if ($index == ($this->getSize() - 1)) {
+            $this->size--;
+        }
+    }
+
+    public function clear()
+    {
+        $this->array = new SplFixedArray($this->getSize());
+    }
+
     public function getSize(): int
     {
         return $this->size;
     }
 
+    public function getArray(): SplFixedArray
+    {
+        return $this->array;
+    }
+
     private function resize(): void
     {
         $oldArray = $this->array;
-        $newArray = new SplFixedArray($this->array->getSize() * 2);
+        $newArray = new SplFixedArray(($this->array->getSize() * 2) + 1);
 
         foreach ($oldArray as $key => $value) {
             $newArray[$key] = $value;

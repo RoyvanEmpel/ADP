@@ -13,6 +13,7 @@ final class DynamicArrayTest extends TestCase
     public function testEmptyArray(): void
     {
         $dynamicArray = new DynamicArray();
+        $dynamicArray->add(0, 0);
         $this->assertEquals(0, $dynamicArray->get(0));
     }
 
@@ -42,6 +43,7 @@ final class DynamicArrayTest extends TestCase
     public function testEmptyArrayIndexZero(): void
     {
         $dynamicArray = new DynamicArray();
+        $dynamicArray->add(0, null);
         $this->assertEquals(null, $dynamicArray->get(0));
     }
 
@@ -103,6 +105,7 @@ final class DynamicArrayTest extends TestCase
         if (is_object($jsonContents)) {
             foreach ($jsonContents as $key => $testData) {
                 $dynamicArray = new DynamicArray();
+                $this->assertEquals(0, $dynamicArray->getSize());
 
                 // This index in the loop is the position of the value in the dynamic array.
                 // It is not set in the file so it will automaticly be the same as from the dynamic array.
