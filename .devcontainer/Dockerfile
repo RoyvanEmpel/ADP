@@ -1,4 +1,4 @@
-FROM php:8.2
+FROM php:8.2-cli
 
 # Update package repository en installeer essentiële pakketten
 RUN apt-get update && apt-get install -y \
@@ -11,7 +11,8 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php -r "unlink('composer-setup.php');"
 
 # Kopieer composer.json en composer.lock
-COPY ../composer.json ../composer.lock ./
+COPY ../composer.json ./
+COPY ../composer.lock ./
 
 # Installeer afhankelijkheden
 RUN composer install --no-scripts --no-autoloader
