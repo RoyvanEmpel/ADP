@@ -11,7 +11,7 @@ $list = new Stack();
 echo "Testing Stack - add\n";
 Benchmark::start('Stack - add');
 
-for ($i=0; $i < $testingSize; $i++) {
+for ($i = 0; $i < $testingSize; $i++) {
   $list->push($i);
 }
 
@@ -20,7 +20,7 @@ Benchmark::end('Stack - add');
 echo "Testing Stack - get\n";
 Benchmark::start('Stack - get');
 
-for ($i=0; $i < $testingSize; $i++) {
+for ($i = 0; $i < $testingSize; $i++) {
   $list->top();
 }
 
@@ -31,8 +31,8 @@ $memoryUsage = Benchmark::memory();
 echo "Testing Stack - remove\n";
 Benchmark::start('Stack - remove');
 
-for ($i=0; $i < $testingSize; $i++) {
-  $list->pop(($testingSize-$i) - 1);
+for ($i = 0; $i < $testingSize; $i++) {
+  $list->pop(($testingSize - $i) - 1);
 }
 
 Benchmark::end('Stack - remove');
