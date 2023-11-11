@@ -1,0 +1,12 @@
+Cases\Stack::__set_state(array(
+   'stack' => 
+  Cases\DynamicArray::__set_state(array(
+     'array' => 
+    SplFixedArray::__set_state(array(
+       0 => 3,
+       1 => 2,
+       2 => 1,
+    )),
+     'size' => 3,
+  )),
+))
