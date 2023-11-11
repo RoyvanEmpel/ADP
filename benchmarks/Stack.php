@@ -5,7 +5,7 @@ include(__DIR__ . '/../cases/stack/Stack.php');
 
 use Cases\Stack;
 
-$testingSize = 10000;
+$testingSize = 1000000;
 $list = new Stack();
 
 echo "Testing Stack - add\n";
