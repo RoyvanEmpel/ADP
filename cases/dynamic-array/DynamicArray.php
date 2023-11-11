@@ -43,10 +43,8 @@ class DynamicArray
 
     public function remove(int $index): void
     {
-        $this->array[$index] = null;
-        if ($index == ($this->getSize() - 1)) {
-            $this->size--;
-        }
+        unset($this->array[$index]);
+        $this->size--;
     }
 
     public function clear()
