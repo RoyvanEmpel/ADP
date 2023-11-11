@@ -3,7 +3,7 @@
 namespace UnitTests;
 
 include(__DIR__ . '/../DynamicArray.php');
-include(__DIR__ . '/../../Pasta.php');
+include(__DIR__ . '/../../../Pasta.php');
 
 use PHPUnit\Framework\TestCase;
 use Cases\DynamicArray;
@@ -130,7 +130,7 @@ class DynamicArrayTest extends TestCase
 
     public function testWithJSONData(): void
     {
-        $jsonContents = file_get_contents(__DIR__ . '/../../assets/json/dataset_sorteren.json');
+        $jsonContents = file_get_contents(__DIR__ . '/../../../assets/json/dataset_sorteren.json');
         if (json_decode($jsonContents)) {
             $jsonContents = json_decode($jsonContents);
         }

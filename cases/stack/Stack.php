@@ -3,7 +3,7 @@
 namespace Cases;
 
 
-include(__DIR__ . '/../dynamic-array/DynamicArray.php');
+include(__DIR__ . '/../../cases/dynamic-array/DynamicArray.php');
 
 use Cases\DynamicArray;
 
