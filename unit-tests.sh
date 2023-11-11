@@ -3,6 +3,8 @@
 # Het pad naar de root van de unittests
 ROOT_DIR="cases"
 
+composer i
+
 # Vind en navigeer naar elke unit-test directory en voer daar phpunit uit
 find "$ROOT_DIR" -type d -name "unit-tests" | while read -r test_dir; do
   # Voor elk PHP-bestand in de huidige unit-tests directory
