@@ -98,14 +98,14 @@ class DoublyLinkedListTest extends TestCase
                 $list = new DoublyLinkedList();
                 $this->assertEquals(0, $list->getSize());
 
-                // This index in the loop is the position of the value in the dynamic array.
-                // It is not set in the file so it will automaticly be the same as from the dynamic array.
+                // This index in the loop is the position of the value in the DoublyLinkedList.
+                // It is not set in the file so it will automaticly be the same as from the doubly linked list.
                 foreach ($testData as $index => $value) {
                     $list->append($value);
                     $this->assertEquals($value, $list->get($index));
                 }
 
-                file_put_contents(__DIR__ . '/logs/list-' . $key . '.log', var_export($list, true));
+                // Don't log to file because of infinite recursion in list.
             }
         }
     }
