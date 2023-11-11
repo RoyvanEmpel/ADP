@@ -62,11 +62,9 @@ class StackTest extends TestCase
                 $stack = new Stack();
                 $this->assertEquals(true, $stack->isEmpty());
 
-                // This index in the loop is the position of the value in the dynamic array.
-                // It is not set in the file so it will automaticly be the same as from the dynamic array.
-                foreach ($testData as $index => $value) {
+                foreach ($testData as $value) {
                     $stack->push($value);
-                    $this->assertEquals($value, $stack->top($index));
+                    $this->assertEquals($value, $stack->top());
                 }
 
                 file_put_contents(__DIR__ . '/logs/StackTest-' . $key . '.log', var_export($stack, true));
