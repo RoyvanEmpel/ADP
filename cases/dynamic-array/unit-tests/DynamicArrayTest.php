@@ -147,7 +147,12 @@ class DynamicArrayTest extends TestCase
                     $this->assertEquals($value, $dynamicArray->get($index));
                 }
 
-                file_put_contents(__DIR__ . '/logs/DynamicArray-' . $key . '.log', var_export($dynamicArray, true));
+                $filename = __DIR__ . '/logs/DynamicArray-' . $key . '.log';
+                if (!file_exists($filename)) {
+                    fopen($filename, 'w');
+                }
+
+                file_put_contents($filename, var_export($dynamicArray, true));
             }
         }
     }
