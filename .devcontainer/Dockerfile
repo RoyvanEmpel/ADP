@@ -10,15 +10,11 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
     && php -r "unlink('composer-setup.php');"
 
-# Kopieer composer.json en composer.lock
-COPY ./workspaces/ADP/composer.json ./
-COPY ./workspaces/ADP/composer.lock ./
+# Installeer afhankelijkheden
+RUN composer require phpunit/phpunit
 
 # Installeer afhankelijkheden
 RUN composer install --no-scripts --no-autoloader
-
-# Kopieer de rest van de code
-COPY . .
 
 # Genereer de autoloader scripts
 RUN composer dump-autoload --optimize
