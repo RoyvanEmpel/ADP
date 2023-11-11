@@ -10,12 +10,9 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
     && php -r "unlink('composer-setup.php');"
 
-# Definieer de root van de repository als werkdirectory
-WORKDIR /workspaces/ADP
-
 # Kopieer composer.json en composer.lock
-COPY ./../composer.json ./
-COPY ./../composer.lock ./
+COPY ./workspaces/ADP/composer.json ./
+COPY ./workspaces/ADP/composer.lock ./
 
 # Installeer afhankelijkheden
 RUN composer install --no-scripts --no-autoloader
