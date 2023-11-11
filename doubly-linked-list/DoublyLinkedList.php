@@ -67,7 +67,7 @@ class DoublyLinkedList
         return $this->search($index)->data;
     }
 
-    public function delete(int $index)
+    public function remove(int $index)
     {
         $node = $this->search($index);
 
