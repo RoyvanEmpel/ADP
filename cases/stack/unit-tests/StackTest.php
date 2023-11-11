@@ -39,6 +39,7 @@ class StackTest extends TestCase
     public function testTopWhenEmpty()
     {
         $stack = new Stack(); // [ ]
+        $this->expectException(\Exception::class);
         $this->assertEquals(null, $stack->top());
     }
 

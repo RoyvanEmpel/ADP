@@ -21,17 +21,11 @@ class Stack
 
     public function pop(): void
     {
-        if (!$this->isEmpty()) {
-            $this->stack->remove($this->stack->getSize() - 1);
-        }
+        $this->stack->remove($this->stack->getSize() - 1);
     }
 
     public function top(): mixed
     {
-        if ($this->isEmpty()) {
-            return null;
-        }
-
         return $this->stack->get($this->stack->getSize() - 1);
     }
 
