@@ -5,11 +5,9 @@ namespace UnitTests;
 include(__DIR__ . '/../DynamicArray.php');
 
 use Cases\DynamicArray;
-use Error;
-use OverflowException;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
-
+use ValueError;
 final class DynamicArrayTest extends TestCase
 {
     public function testEmptyArray(): void
@@ -91,7 +89,7 @@ final class DynamicArrayTest extends TestCase
 
     public function testNegativeSize(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(ValueError::class);
         $dynamicArray = new DynamicArray(-5);
     }
 }
