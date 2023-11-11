@@ -60,6 +60,8 @@ class DoublyLinkedList
         }
 
         $foundNode->prev = &$node;
+
+        $this->size++;
     }
 
     public function get(int $index): mixed
@@ -75,13 +77,13 @@ class DoublyLinkedList
             $this->current = &$this->head;
         }
 
-        if ($node->prev !== null) {
+        if ($node->has('prev')) {
             $node->prev->next = &$node->next;
         } else {
             $this->head = &$node->next;
         }
 
-        if ($node->next !== null) {
+        if ($node->has('next')) {
             $node->next->prev = &$node->prev;
         } else {
             $this->tail = &$node->prev;
@@ -203,31 +205,3 @@ class Node
         return true;
     }
 }
-
-$test = new DoublyLinkedList();
-
-// append / prepend
-// $test->append('geef');
-// $test->append(2);
-// $test->append('banaan');
-// $test->append(4);
-// $test->prepend(5);
-// $test->append(5);
-// $test->append(6);
-// $test->append(7);
-
-// insert at
-// $test->insertAt(1, 'aapje');
-
-// get out of range
-// var_dump($test->get(20));
-
-
-// next / prev
-// var_dump($test->next());
-// var_dump($test->prev());
-// var_dump($test->next());
-// var_dump($test->next());
-
-print_r($test);
-
