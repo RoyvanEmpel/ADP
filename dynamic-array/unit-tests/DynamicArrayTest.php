@@ -92,4 +92,27 @@ final class DynamicArrayTest extends TestCase
         $this->expectException(ValueError::class);
         $dynamicArray = new DynamicArray(-5);
     }
+
+    public function testWithJSONData(): void
+    {
+        $jsonContents = file_get_contents(__DIR__ . '/../../assets/json/dataset_sorteren.json');
+        if (json_decode($jsonContents)) {
+            $jsonContents = json_decode($jsonContents);
+        }
+
+        if (is_object($jsonContents)) {
+            foreach ($jsonContents as $key => $testData) {
+                $dynamicArray = new DynamicArray();
+
+                // This index in the loop is the position of the value in the dynamic array.
+                // It is not set in the file so it will automaticly be the same as from the dynamic array.
+                foreach ($testData as $index => $value) {
+                    $dynamicArray->add($value);
+                    $this->assertEquals($value, $dynamicArray->get($index));
+                }
+
+                file_put_contents(__DIR__ . '/logs/DynamicArray-' . $key . '.log', var_export($dynamicArray, true));
+            }
+        }
+    }
 }

@@ -1,0 +1,10 @@
+Cases\DynamicArray::__set_state(array(
+   'array' => 
+  SplFixedArray::__set_state(array(
+     0 => 1,
+     1 => 1.0,
+     2 => 'string',
+     3 => NULL,
+  )),
+   'size' => 3,
+))
