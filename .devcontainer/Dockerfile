@@ -1,4 +1,4 @@
-FROM php:8.2-cli
+FROM php:8.2
 
 # Update package repository en installeer essentiële pakketten
 RUN apt-get update && apt-get install -y \
