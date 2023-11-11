@@ -1,30 +1,16 @@
 #!/bin/bash
 
-# Verander naar de 'cases' directory
-cd /cases || exit
+# Het pad naar de root van de unittests
+ROOT_DIR="cases"
 
-# Lijst van alle mappen (projecten) binnen 'cases'
-projects=$(find . -maxdepth 1 -type d)
+composer i
 
-# Loop door elk project
-for project in $projects
-do
-    if [ "$project" != "." ]; then
-        # Controleer of het een map is
-        if [ -d "$project/unit-tests" ]; then
-            echo "Running PHPUnit tests for project: $project"
-            cd "$project/unit-tests" || exit
-
-            # Voer PHPUnit-tests uit als ze bestaan
-            if [ -f "phpunit.xml" ]; then
-                phpunit
-            else
-                echo "No PHPUnit tests found for $project"
-            fi
-
-            cd ../../ || exit
-        else
-            echo "No unit-tests directory found for $project"
-        fi
-    fi
+# Vind en navigeer naar elke unit-test directory en voer daar phpunit uit
+find . -type d -name "unit-tests" | while read -r test_dir; do
+    echo "Running PHPUnit in $test_dir"
+    pushd "$test_dir" > /dev/null                                  # Navigeer naar de unittest directory
+    ./vendor/bin/phpunit $ROOT_DIR/$test_dir/--filename--          # Voer PHPUnit uit
+    popd > /dev/null                                               # Ga terug naar de vorige directory
 done
+
+echo "All tests have been run."
