@@ -1,0 +1,12 @@
+{
+    "name": "ADP codespace",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "settings": {
+        // VS Code instellingen
+    },
+    "extensions": [
+        // Lijst van VS Code extensies die je wilt installeren
+    ]
+}
