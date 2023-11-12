@@ -12,8 +12,6 @@
 
 ## Algorithms performance
 
-`1.000.000` items in de array
-
 ### Dynamic Array
 **Dataset**: `10.000` items in de array
 
@@ -24,7 +22,7 @@ Geen verbetering mogelijk
 **Time**: `0.68 sec.`
 
 **Analyse**:
-De insertion in een dynamic array is meestal snel (`0(1)`), behalve wanneer de array zijn capaciteit bereikt. Op dat moment moet de array vergroot worden (in dit geval `n*2 + 2`), wat een `0(n)` operatie is omdat alle elementen naar de nieuwe array gekopieerd moeten worden.
+De insertion in een dynamic array is meestal snel (`0(1)`), behalve wanneer de array zijn capaciteit bereikt. Op dat moment moet de array vergroot worden (in dit geval `n*2 + 1`), wat een `0(n)` operatie is omdat alle elementen naar de nieuwe array gekopieerd moeten worden.
 
 #### Retrieval
 **Time**: `0.32 sec.`
