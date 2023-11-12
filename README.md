@@ -13,7 +13,7 @@
 ## Algorithms performance
 
 ### Dynamic Array
-**Dataset**: `10.000` items in de array
+**Dataset**: `10.000.000` items in de array
 
 **Mogelijke verbetering**:
 Geen verbetering mogelijk
