@@ -159,7 +159,7 @@ class DoublyLinkedList
     private function search(mixed $data): Node
     {
         $head = &$this->head;
-        for ($i = 0; $i < $this->size; $i++) {
+        for ($i = 0; $i < $this->getSize(); $i++) {
             if ($data === $head->data) {
                 return $head;
             }
