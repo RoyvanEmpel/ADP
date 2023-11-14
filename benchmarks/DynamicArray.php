@@ -5,13 +5,13 @@ include(__DIR__ . '/../cases/dynamic-array/DynamicArray.php');
 
 use Cases\DynamicArray;
 
-$testingSize = 1000000;
+$testingSize = 10000;
 $list = new DynamicArray();
 
 echo "Testing DynamicArray - add\n";
 Benchmark::start('DynamicArray - add');
 for ($i = 0; $i < $testingSize; $i++) {
-  $list->add($i);
+  $list->add("waarde" . $i);
 }
 Benchmark::end('DynamicArray - add');
 
@@ -21,6 +21,20 @@ for ($i = 0; $i < $testingSize; $i++) {
   $list->get($i);
 }
 Benchmark::end('DynamicArray - get');
+
+echo "Testing DynamicArray - find\n";
+Benchmark::start('DynamicArray - find');
+for ($i = 0; $i < $testingSize; $i++) {
+  $list->find("waarde" . $i);
+}
+Benchmark::end('DynamicArray - find');
+
+echo "Testing DynamicArray - contains\n";
+Benchmark::start('DynamicArray - contains');
+for ($i = 0; $i < $testingSize; $i++) {
+  $list->contains("waarde" . $i);
+}
+Benchmark::end('DynamicArray - contains');
 
 $memoryUsage = Benchmark::memory();
 

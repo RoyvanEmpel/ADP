@@ -64,7 +64,7 @@ class DynamicArrayTest extends TestCase
     public function testIndexGreaterThanCurrentSize(): void
     {
         $dynamicArray = new DynamicArray(); // [ ]
-        $dynamicArray->set(10, 'Spaghetti'); // [ 0 => null, 1 => null, 2 => null ... 9 => null, 10 => 'Spaghetti' ]
+        $dynamicArray->set(10, 'Spaghetti'); // [ 10 => 'Spaghetti' ]
         $this->assertEquals(null, $dynamicArray->get(1));
         $this->assertEquals('Spaghetti', $dynamicArray->get(10));
     }
@@ -72,9 +72,9 @@ class DynamicArrayTest extends TestCase
     public function testSizeChangedAfterIndexSet(): void
     {
         $dynamicArray = new DynamicArray(); // [ ]
-        $dynamicArray->set(10, 'Spaghetti'); // [ 0 => null, 1 => null, 2 => null, 3 => null, 4 => null ... 9 => null, 10 => 'Spaghetti' ]
-        $dynamicArray->set(4, 'Fusilli'); // [ 0 => null, 1 => null, 2 => null, 3 => null, 4 => 'Fusilli' ... 9 => null, 10 => 'Spaghetti' ]
-        $this->assertEquals(11, $dynamicArray->getSize());
+        $dynamicArray->set(10, 'Spaghetti'); // [ 10 => 'Spaghetti' ]
+        $dynamicArray->set(4, 'Fusilli'); // [ 4 => 'Fusilli', 10 => 'Spaghetti' ]
+        $this->assertEquals(2, $dynamicArray->getSize());
     }
 
     public function testArraySize(): void
