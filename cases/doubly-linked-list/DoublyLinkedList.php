@@ -156,7 +156,7 @@ class DoublyLinkedList
         return $this->current;
     }
 
-    public function search(mixed $data): Node
+    private function search(mixed $data): Node
     {
         $head = &$this->head;
         for ($i = 0; $i < $this->getSize(); $i++) {

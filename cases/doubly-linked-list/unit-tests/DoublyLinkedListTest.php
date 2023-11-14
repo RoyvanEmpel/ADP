@@ -98,58 +98,59 @@ class DoublyLinkedListTest extends TestCase
         $pasta = new Pasta(PastaType::Spaghetti, SauceType::Tomatensaus);
         $list->append($pasta);
 
-        $returnedPasta = $list->search($pasta);
-        $this->assertEquals($pasta, $returnedPasta->data);
+        // The get method executes the search method.
+        $returnedPasta = $list->get($pasta);
+        $this->assertEquals($pasta, $returnedPasta);
     }
 
-    // public function testLargeNumberOfElements(): void
-    // {
-    //     $list = new DoublyLinkedList();
-    //     for ($i = 0; $i < 1000000; $i++) {
-    //         $list->append($i);
-    //     }
-    //     $this->assertEquals(999999, $list->get(999999));
-    // }
+    public function testLargeNumberOfElements(): void
+    {
+        $list = new DoublyLinkedList();
+        for ($i = 0; $i < 1000000; $i++) {
+            $list->append($i);
+        }
+        $this->assertEquals(999999, $list->get(999999));
+    }
 
-    // public function testPastaInsert()
-    // {
-    //     $list = new DoublyLinkedList();
+    public function testPastaInsert()
+    {
+        $list = new DoublyLinkedList();
 
-    //     $pasta1 = new Pasta(PastaType::Spaghetti, SauceType::Tomatensaus);
-    //     $pasta2 = new Pasta(PastaType::Fusilli, SauceType::Pesto);
+        $pasta1 = new Pasta(PastaType::Spaghetti, SauceType::Tomatensaus);
+        $pasta2 = new Pasta(PastaType::Fusilli, SauceType::Pesto);
 
-    //     $list->append($pasta1); // [ 0 => $pasta1 ]
-    //     $list->append($pasta2); // [ 0 => $pasta1, 1 => $pasta2 ]
-    //     $list->start();
+        $list->append($pasta1); // [ 0 => $pasta1 ]
+        $list->append($pasta2); // [ 0 => $pasta1, 1 => $pasta2 ]
+        $list->start();
         
-    //     $this->assertEquals($pasta2, $list->next());
-    //     $this->assertEquals($pasta1, $list->prev());
+        $this->assertEquals($pasta2, $list->next());
+        $this->assertEquals($pasta1, $list->prev());
 
-    //     $this->assertEquals('Een heerlijke Fusilli met Pesto saus.', $list->next()->description());
-    //     $this->assertEquals('Een heerlijke Spaghetti met Tomatensaus saus.', $list->prev()->description());
-    // }
+        $this->assertEquals('Een heerlijke Fusilli met Pesto saus.', $list->next()->description());
+        $this->assertEquals('Een heerlijke Spaghetti met Tomatensaus saus.', $list->prev()->description());
+    }
 
-    // public function testWithJSONData(): void
-    // {
-    //     $jsonContents = file_get_contents(__DIR__ . '/../../../assets/json/dataset_sorteren.json');
-    //     if (json_decode($jsonContents)) {
-    //         $jsonContents = json_decode($jsonContents);
-    //     }
+    public function testWithJSONData(): void
+    {
+        $jsonContents = file_get_contents(__DIR__ . '/../../../assets/json/dataset_sorteren.json');
+        if (json_decode($jsonContents)) {
+            $jsonContents = json_decode($jsonContents);
+        }
 
-    //     if (is_object($jsonContents)) {
-    //         foreach ($jsonContents as $testData) {
-    //             $list = new DoublyLinkedList();
-    //             $this->assertEquals(0, $list->getSize());
+        if (is_object($jsonContents)) {
+            foreach ($jsonContents as $testData) {
+                $list = new DoublyLinkedList();
+                $this->assertEquals(0, $list->getSize());
 
-    //             // This index in the loop is the position of the value in the DoublyLinkedList.
-    //             // It is not set in the file so it will automaticly be the same as from the doubly linked list.
-    //             foreach ($testData as $value) {
-    //                 $list->append($value);
-    //                 $this->assertEquals($value, $list->get($value));
-    //             }
+                // This index in the loop is the position of the value in the DoublyLinkedList.
+                // It is not set in the file so it will automaticly be the same as from the doubly linked list.
+                foreach ($testData as $value) {
+                    $list->append($value);
+                    $this->assertEquals($value, $list->get($value));
+                }
 
-    //             // Don't log to file because of infinite recursion in list.
-    //         }
-    //     }
-    // }
+                // Don't log to file because of infinite recursion in list.
+            }
+        }
+    }
 }

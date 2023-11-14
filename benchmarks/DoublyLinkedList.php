@@ -22,14 +22,6 @@ for ($i = 0; $i < $testingSize; $i++) {
 }
 Benchmark::end('DoublyLinkedList - get');
 
-echo "Testing DoublyLinkedList - search\n";
-Benchmark::start('DoublyLinkedList - search');
-for ($i = 0; $i < $testingSize; $i++) {
-  $list->search($i);
-}
-Benchmark::end('DoublyLinkedList - search');
-
-
 $memoryUsage = Benchmark::memory();
 
 echo "Testing DoublyLinkedList - remove end to start\n";
