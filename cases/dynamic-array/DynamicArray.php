@@ -9,7 +9,8 @@ class DynamicArray
     private SplFixedArray $array;
     private int $size = 0;
 
-    public function __construct(int $size = 0) {
+    public function __construct(int $size = 0)
+    {
         $this->array = new SplFixedArray($size);
     }
 
