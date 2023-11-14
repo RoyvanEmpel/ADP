@@ -138,7 +138,7 @@ class DoublyLinkedList
 
     private function search(int $index): Node
     {
-        if ($index < ($this->size / 2)) {
+        if ($index < ($this->getSize() / 2)) {
             return $this->searchFromHead($index);
         } else {
             return $this->searchFromTail($index);
@@ -148,7 +148,7 @@ class DoublyLinkedList
     private function searchFromHead(int $index): Node
     {
         $head = &$this->head;
-        for ($i = 0; $i < $this->size; $i++) {
+        for ($i = 0; $i < $this->getSize(); $i++) {
             if ($i === $index) {
                 return $head;
             }
@@ -164,7 +164,7 @@ class DoublyLinkedList
     private function searchFromTail(int $index): Node
     {
         $tail = &$this->tail;
-        for ($i = ($this->size - 1); $i >= 0; $i--) {
+        for ($i = ($this->getSize() - 1); $i >= 0; $i--) {
             if ($i === $index) {
                 return $tail;
             }

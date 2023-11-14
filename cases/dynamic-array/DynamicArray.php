@@ -27,18 +27,18 @@ class DynamicArray
 
         $this->array[$key] = $value;
 
-        if ($key > $this->size) {
+        if ($key > $this->getSize()) {
             $this->size = ($key + 1);
         }
     }
 
     public function add(mixed $value): void
     {
-        if ($this->size == $this->array->getSize()) {
+        if ($this->getSize() == $this->array->getSize()) {
             $this->resize();
         }
 
-        $this->array[$this->size] = $value;
+        $this->array[$this->getSize()] = $value;
         $this->size++;
     }
 
