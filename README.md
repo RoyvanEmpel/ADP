@@ -10,13 +10,13 @@ It's very simple to execute the unit tests. Just follow the stepts below.
 
 ---
 
-## Performance of the algorithms
+## Performance of the datastructures
 
 `0(1)` - constant time (item 1 and 555 take the same time)
 `0(n)` - linear time (item 1 takes 1 second, item 555 takes 555 seconds)
 
 
-## Algorithms performance
+## Datastructures performance
 
 ### Dynamic Array
 **Dataset**: `1.000.000` items in de array
