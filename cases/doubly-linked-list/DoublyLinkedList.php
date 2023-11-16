@@ -214,7 +214,7 @@ class DoublyLinkedList
         $array = [];
 
         while (isset($node->next)) {
-            $array[$node->data] = [
+            $array[var_export($node->data, true)] = [
                 'prev' => $node->prev?->data,
                 'next' => $node->next?->data,
             ];
