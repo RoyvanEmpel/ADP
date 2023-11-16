@@ -47,8 +47,12 @@ class DoublyLinkedList
     public function insertBefore(mixed $before, mixed $data): void
     {
         $node = new Node($data);
-        
-        $foundNode = $this->find($before);
+
+        if ($before === null) {
+            $foundNode = &$this->head->next;
+        } else {
+            $foundNode = $this->find($before);
+        }
 
         $foundNode->prev->next = &$node;
         $node->prev = &$foundNode->prev;
@@ -62,6 +66,12 @@ class DoublyLinkedList
     public function insertAfter(mixed $after, mixed $data): void
     {
         $node = new Node($data);
+
+        if ($after === null) {
+            $foundNode = &$this->tail->prev;
+        } else {
+            $foundNode = $this->find($after);
+        }
         
         $foundNode = $this->find($after);
 
