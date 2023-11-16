@@ -11,8 +11,8 @@ class DoublyLinkedList
 
     public function __construct()
     {
-        $this->head = new Node('HEAD');
-        $this->tail = new Node('TAIL');
+        $this->head = new Node();
+        $this->tail = new Node();
 
         $this->head->next = &$this->tail;
         $this->tail->prev = &$this->head;
@@ -170,7 +170,7 @@ class DoublyLinkedList
         if (!isset($this->current->next) || !isset($this->current->prev)) {
             return null;
         }
-        
+
         return $this->current->data;
     }
 
@@ -221,7 +221,7 @@ class Node
     public ?Node $next;
     public ?Node $prev;
 
-    public function __construct(mixed $data)
+    public function __construct(mixed $data = null)
     {
         $this->data = $data;
     }
