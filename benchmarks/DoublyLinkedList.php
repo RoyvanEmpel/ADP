@@ -60,8 +60,6 @@ for ($i = 0; $i < $testingSize; $i++) {
   $list->append('waarde' . $i);
 }
 
-// print_r($list->toArray());
-
 echo "Testing DoublyLinkedList - remove through value - end to start\n";
 Benchmark::start('DoublyLinkedList - remove through value - end to start');
 for ($i = 0; $i < $testingSize; $i++) {
