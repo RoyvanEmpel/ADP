@@ -122,11 +122,12 @@ class DoublyLinkedList
             $this->current = &$this->head->next;
         }
 
+        if (!isset($this->current->next)) {
+            return null;
+        }
+
         $this->current = &$this->current->next;
 
-        if (!isset($this->current->next)) {
-            throw new \Exception('Out of range');
-        }
 
         return $this->current->data;
     }
@@ -136,12 +137,12 @@ class DoublyLinkedList
         if ($this->current === null) {
             $this->current = &$this->head->next;
         }
+        
+        if (!isset($this->current->prev)) {
+            return null;
+        }
 
         $this->current = &$this->current->prev;
-
-        if (!isset($this->current->prev)) {
-            throw new \Exception('Out of range');
-        }
 
         return $this->current->data;
     }
@@ -206,12 +207,18 @@ class DoublyLinkedList
         }
     }
 
-    public function toArray(): array
+    public function toArray(bool $simple = false): array
     {
         $node = &$this->head->next;
         $array = [];
 
         while (isset($node->next)) {
+            if ($simple) {
+                $array[] = $node->data;
+                $node = &$node->next;
+                continue;
+            }
+
             $array[var_export($node->data, true)] = [
                 'prev' => $node->prev?->data,
                 'next' => $node->next?->data,
