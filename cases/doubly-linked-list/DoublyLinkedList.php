@@ -140,6 +140,10 @@ class DoublyLinkedList
 
     public function current(): mixed
     {
+        if (!isset($this->current->prev) || !isset($this->current->prev)) {
+            return null;
+        }
+
         return $this->current?->data;
     }
 
