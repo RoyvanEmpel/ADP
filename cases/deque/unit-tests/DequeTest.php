@@ -14,46 +14,47 @@ use SauceType;
 
 class DequeTest extends TestCase
 {
+    private Deque $deque;
+
+    protected function setUp(): void
+    {
+        $this->deque = new Deque();
+    }
+
     public function testInsertLeft(): void
     {
-        $deque = new Deque();
-        $deque->insertLeft("a");
-        $this->assertSame(1, $deque->getSize());
+        $this->deque->insertLeft("a");
+        $this->assertSame(1, $this->deque->getSize());
     }
 
     public function testInsertRight(): void
     {
-        $deque = new Deque();
-        $deque->insertRight("a");
-        $this->assertSame(1, $deque->getSize());
+        $this->deque->insertRight("a");
+        $this->assertSame(1, $this->deque->getSize());
     }
 
     public function testDeleteLeft(): void
     {
-        $deque = new Deque();
+        $this->deque->insertLeft("a");
+        $this->deque->insertLeft("b");
+        $this->deque->insertLeft("c");
 
-        $deque->insertLeft("a");
-        $deque->insertLeft("b");
-        $deque->insertLeft("c");
-
-        $this->assertEquals("c", $deque->deleteLeft());
-        $this->assertEquals("b", $deque->deleteLeft());
-        $this->assertEquals("a", $deque->deleteLeft());
-        $this->assertSame(0, $deque->getSize());
+        $this->assertEquals("c", $this->deque->deleteLeft());
+        $this->assertEquals("b", $this->deque->deleteLeft());
+        $this->assertEquals("a", $this->deque->deleteLeft());
+        $this->assertSame(0, $this->deque->getSize());
     }
 
     public function testDeleteRight(): void
     {
-        $deque = new Deque();
-        
-        $deque->insertRight("a");
-        $deque->insertRight("b");
-        $deque->insertRight("c");
+        $this->deque->insertRight("a");
+        $this->deque->insertRight("b");
+        $this->deque->insertRight("c");
 
-        $this->assertEquals("c", $deque->deleteRight());
-        $this->assertEquals("b", $deque->deleteRight());
-        $this->assertEquals("a", $deque->deleteRight());
-        $this->assertSame(0, $deque->getSize());
+        $this->assertEquals("c", $this->deque->deleteRight());
+        $this->assertEquals("b", $this->deque->deleteRight());
+        $this->assertEquals("a", $this->deque->deleteRight());
+        $this->assertSame(0, $this->deque->getSize());
     }
 
     public function testWithJSONData(): void

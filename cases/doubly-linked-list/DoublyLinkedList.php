@@ -72,8 +72,6 @@ class DoublyLinkedList
         } else {
             $foundNode = $this->find($after);
         }
-        
-        $foundNode = $this->find($after);
 
         $foundNode->next->prev = &$node;
         $node->next = &$foundNode->next;
