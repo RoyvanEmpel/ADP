@@ -140,7 +140,7 @@ class DoublyLinkedList
 
     public function current(): mixed
     {
-        if (!isset($this->current->prev) || !isset($this->current->prev)) {
+        if (!isset($this->current->next) || !isset($this->current->prev)) {
             return null;
         }
 
@@ -155,12 +155,22 @@ class DoublyLinkedList
     public function start(): mixed
     {
         $this->current = &$this->head->next;
+
+        if (!isset($this->current->next) || !isset($this->current->prev)) {
+            return null;
+        }
+
         return $this->current->data;
     }
 
     public function end(): mixed
     {
         $this->current = &$this->tail->prev;
+
+        if (!isset($this->current->next) || !isset($this->current->prev)) {
+            return null;
+        }
+        
         return $this->current->data;
     }
 
