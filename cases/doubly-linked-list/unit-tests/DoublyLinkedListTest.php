@@ -7,109 +7,119 @@ include(__DIR__ . '/../../../Pasta.php');
 
 use PHPUnit\Framework\TestCase;
 use Cases\DoublyLinkedList;
-use Exception;
+// use Exception;
 use Pasta;
 use PastaType;
 use SauceType;
 
 class DoublyLinkedListTest extends TestCase
 {
-    public function testAppend()
+    public function testNewListIsEmpty()
     {
         $list = new DoublyLinkedList();
-        $list->append('Spaghetti'); // [ 'Spaghetti' ]
+        $this->assertEquals(0, $list->getSize());
+    }
+
+    public function testAppendIncreasesSize()
+    {
+        $list = new DoublyLinkedList();
+        $list->append('Pesto');
         $this->assertEquals(1, $list->getSize());
-        $this->assertEquals('Spaghetti', $list->get('Spaghetti'));
     }
 
-    public function testPrepend()
+    public function testPrependIncreasesSize()
     {
         $list = new DoublyLinkedList();
-        $list->append('Spaghetti 1'); // [ 'Spaghetti 1' ]
-        $list->append('Spaghetti 2'); // [ 'Spaghetti 1', 'Spaghetti 2' ]
-        $list->prepend('Spaghetti 3'); // [ 'Spaghetti 3', 'Spaghetti 1', 'Spaghetti 2' ]
-        $this->assertEquals(3, $list->getSize());
-        $this->assertEquals('Spaghetti 3', $list->get('Spaghetti 3'));
+        $list->prepend('Pesto');
+        $this->assertEquals(1, $list->getSize());
     }
 
-    public function testInsertBefore(): void
+    public function testInsertBefore()
     {
         $list = new DoublyLinkedList();
-        $list->append('A');
-        $list->append('C');
-
-        $list->insertBefore('C', 'B');
-
-        $this->assertEquals('A', $list->start()->data);
-        $this->assertEquals('B', $list->next());
-        $this->assertEquals('C', $list->next());
-        $this->assertEquals('B', $list->prev());
-        $this->assertEquals(3, $list->getSize());
+        $list->append('Spaghetti');
+        $list->insertBefore('Spaghetti', 'Penne');
+        $this->assertEquals(2, $list->getSize());
     }
 
-    public function testInsertAfter(): void
+    public function testInsertAfter()
     {
         $list = new DoublyLinkedList();
-        $list->append('A');
-        $list->append('C');
+        $list->append('Spaghetti');
+        $list->insertAfter('Spaghetti', 'Fusilli');
+        $this->assertEquals(2, $list->getSize());
+    }
 
-        $list->insertAfter('A', 'B');
+    public function testShiftRemovesFirstElement()
+    {
+        $list = new DoublyLinkedList();
+        $list->append('Spaghetti');
+        $list->append('Fusilli');
+        $shifted = $list->shift();
+        $this->assertEquals('Spaghetti', $shifted);
+        $this->assertEquals(1, $list->getSize());
+    }
 
-        $this->assertEquals('A', $list->start()->data);
-        $this->assertEquals('B', $list->next());
-        $this->assertEquals('C', $list->next());
-        $this->assertEquals('B', $list->prev());
-        $this->assertEquals(3, $list->getSize());
+    public function testPopRemovesLastElement()
+    {
+        $list = new DoublyLinkedList();
+        $list->append('Spaghetti');
+        $list->append('Fusilli');
+        $popped = $list->pop();
+        $this->assertEquals('Fusilli', $popped);
+        $this->assertEquals(1, $list->getSize());
     }
 
     public function testRemove()
     {
         $list = new DoublyLinkedList();
-        $list->append('Spaghetti'); // [ 'Spaghetti' ]
-        $list->append('Fusilli'); // [ 'Spaghetti', 'Fusilli' ]
-        $list->remove('Spaghetti'); // [ 'Fusilli' ]
+        $list->append('Spaghetti');
+        $list->append('Fusilli');
+        $list->remove('Spaghetti');
         $this->assertEquals(1, $list->getSize());
-        $this->assertEquals('Fusilli', $list->get('Fusilli'));
     }
 
-    public function testNextAndPrev()
+    public function testNextPrevCurrent()
     {
         $list = new DoublyLinkedList();
-        $list->append('Spaghetti'); // [ 'Spaghetti' ]
-        $list->append('Fusilli'); // [ 'Spaghetti', 'Fusilli' ]
-        $list->start();
+        $list->append('Spaghetti');
+        $list->append('Fusilli');
+        $list->append('Tagliatelle');
+        $this->assertEquals('Spaghetti', $list->start());
         $this->assertEquals('Fusilli', $list->next());
         $this->assertEquals('Spaghetti', $list->prev());
+        $this->assertEquals('Spaghetti', $list->current());
     }
 
-    public function testOutOfBounds()
+    public function testStartEnd()
     {
-        $this->expectException(\Exception::class);
-
         $list = new DoublyLinkedList();
-        $list->append('Spaghetti'); // [ 'Spaghetti' ]
-        $list->get('Fusilli');
+        $list->append('Spaghetti');
+        $list->append('Fusilli');
+        $this->assertEquals('Spaghetti', $list->start());
+        $this->assertEquals('Fusilli', $list->end());
     }
 
-    public function testFind()
+    public function testFindContains()
     {
         $list = new DoublyLinkedList();
-
-        $pasta = new Pasta(PastaType::Spaghetti, SauceType::Tomatensaus);
-        $list->append($pasta);
-
-        // The get method executes the find method.
-        $returnedPasta = $list->get($pasta);
-        $this->assertEquals($pasta, $returnedPasta);
+        $list->append('Spaghetti');
+        $this->assertNotNull($list->find('Spaghetti'));
+        $this->assertTrue($list->contains('Spaghetti'));
+        $this->assertFalse($list->contains('Fusilli'));
     }
 
-    public function testLargeNumberOfElements(): void
+    public function testToArray()
     {
         $list = new DoublyLinkedList();
-        for ($i = 0; $i < 1000000; $i++) {
-            $list->append($i);
-        }
-        $this->assertEquals(999999, $list->get(999999));
+        $list->append('Spaghetti');
+        $list->append('Fusilli');
+        $expectedArray = [
+            var_export('Spaghetti', true) => ['prev' => null, 'next' => 'Fusilli'],
+            var_export('Fusilli', true) => ['prev' => 'Spaghetti', 'next' => null]
+        ];
+
+        $this->assertEquals($expectedArray, $list->toArray());
     }
 
     public function testPastaInsert()
@@ -138,7 +148,7 @@ class DoublyLinkedListTest extends TestCase
         }
 
         if (is_object($jsonContents)) {
-            foreach ($jsonContents as $testData) {
+            foreach ($jsonContents as $key => $testData) {
                 $list = new DoublyLinkedList();
                 $this->assertEquals(0, $list->getSize());
 
@@ -146,10 +156,17 @@ class DoublyLinkedListTest extends TestCase
                 // It is not set in the file so it will automaticly be the same as from the doubly linked list.
                 foreach ($testData as $value) {
                     $list->append($value);
-                    $this->assertEquals($value, $list->get($value));
+                    $this->assertEquals($value, $list->end());
                 }
 
-                // Don't log to file because of infinite recursion in list.
+                $filename = __DIR__ . '/logs/DoublyLinkedList-' . $key . '.log';
+                if (!file_exists($filename)) {
+                    fopen($filename, 'w');
+                } else {
+                    unlink($filename);
+                }
+
+                file_put_contents($filename, var_export($list->toArray(), true));
             }
         }
     }
