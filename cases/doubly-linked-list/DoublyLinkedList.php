@@ -44,14 +44,14 @@ class DoublyLinkedList
         $this->size++;
     }
 
-    public function insertAt(int $index, mixed $data): void
+    public function insertBefore(mixed $searchData, mixed $newData): void
     {
-        $node = new Node($data);
+        $node = new Node($newData);
         
-        $foundNode = $this->search($index);
+        $foundNode = $this->search($searchData);
         
-        $node->prev = &$foundNode->prev;
         $node->next = &$foundNode;
+        $node->prev = &$foundNode->prev;
 
         if ($foundNode->has('prev')) {
             $foundNode->prev->next = &$node;
@@ -64,14 +64,34 @@ class DoublyLinkedList
         $this->size++;
     }
 
-    public function get(int $index): mixed
+    public function insertAfter(mixed $searchData, mixed $newData): void
     {
-        return $this->search($index)->data;
+        $node = new Node($newData);
+        
+        $foundNode = $this->search($searchData);
+        
+        $node->prev = &$foundNode;
+        $node->next = &$foundNode->next;
+
+        if ($foundNode->has('next')) {
+            $foundNode->next->prev = &$node;
+        } else {
+            $this->head = &$node;
+        }
+
+        $foundNode->next = &$node;
+
+        $this->size++;
     }
 
-    public function remove(int $index)
+    public function get(mixed $value): mixed
     {
-        $node = $this->search($index);
+        return $this->search($value)->data;
+    }
+
+    public function remove(mixed $value)
+    {
+        $node = $this->search($value);
 
         if ($this->current === $node) {
             $this->current = &$this->head;
@@ -136,20 +156,11 @@ class DoublyLinkedList
         return $this->current;
     }
 
-    private function search(int $index): Node
-    {
-        if ($index < ($this->size / 2)) {
-            return $this->searchFromHead($index);
-        } else {
-            return $this->searchFromTail($index);
-        }
-    }
-
-    private function searchFromHead(int $index): Node
+    private function search(mixed $data): Node
     {
         $head = &$this->head;
-        for ($i = 0; $i < $this->size; $i++) {
-            if ($i === $index) {
+        for ($i = 0; $i < $this->getSize(); $i++) {
+            if ($data === $head->data) {
                 return $head;
             }
 
@@ -160,23 +171,6 @@ class DoublyLinkedList
             }
         }
     }
-
-    private function searchFromTail(int $index): Node
-    {
-        $tail = &$this->tail;
-        for ($i = ($this->size - 1); $i >= 0; $i--) {
-            if ($i === $index) {
-                return $tail;
-            }
-
-            $tail = &$tail->prev;
-
-            if ($tail === null) {
-                throw new \Exception('Index out of range');
-            }
-        }
-    }
-
 }
 
 class Node

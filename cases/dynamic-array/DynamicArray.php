@@ -8,37 +8,40 @@ class DynamicArray
 {
     private SplFixedArray $array;
     private int $size = 0;
+    private int $current = 0;
 
-    public function __construct(int $size = 0) {
+    public function __construct(int $size = 0)
+    {
         $this->array = new SplFixedArray($size);
     }
 
-    public function get(string|int $key): mixed
+    public function get(int $index): mixed
     {
-        return $this->array[$key];
+        return $this->array[$index];
     }
 
-    public function set(int $key, mixed $value): void
+    public function getAll(): SplFixedArray
     {
-        while ( $this->array->getSize() == 0 || ($key / $this->array->getSize()) >= 1 ) {
+        return $this->array;
+    }
+
+    public function set(?int $index, mixed $value): void
+    {
+        while ( $this->array->getSize() == 0 || ($index / $this->array->getSize()) >= 1 ) {
             $this->resize();
         }
 
-        $this->array[$key] = $value;
+        $this->array[$index] = $value;
+        $this->size++;
 
-        if ($key > $this->size) {
-            $this->size = ($key + 1);
+        if ($index > $this->current) {
+            $this->current = $index;
         }
     }
 
     public function add(mixed $value): void
     {
-        if ($this->size == $this->array->getSize()) {
-            $this->resize();
-        }
-
-        $this->array[$this->size] = $value;
-        $this->size++;
+        $this->set($this->current++, $value);
     }
 
     public function remove(int $index): void
@@ -57,11 +60,6 @@ class DynamicArray
         return $this->size;
     }
 
-    public function getArray(): SplFixedArray
-    {
-        return $this->array;
-    }
-
     private function resize(): void
     {
         $oldArray = $this->array;
@@ -72,5 +70,28 @@ class DynamicArray
         }
 
         $this->array = $newArray;
+    }
+
+    public function find(mixed $value): ?int
+    {
+        $i = 0;
+        while (true) {
+            if ($this->array[$i] === $value) {
+                return $i;
+            }
+
+            $i++;
+        }
+
+        return null;
+    }
+
+    public function contains(mixed $value): bool
+    {
+        if ($this->find($value) !== null) {
+            return true;
+        }
+
+        return false;
     }
 }
