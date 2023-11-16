@@ -48,7 +48,7 @@ class DoublyLinkedList
     {
         $node = new Node($newData);
         
-        $foundNode = $this->search($searchData);
+        $foundNode = $this->find($searchData);
         
         $node->next = &$foundNode;
         $node->prev = &$foundNode->prev;
@@ -68,7 +68,7 @@ class DoublyLinkedList
     {
         $node = new Node($newData);
         
-        $foundNode = $this->search($searchData);
+        $foundNode = $this->find($searchData);
         
         $node->prev = &$foundNode;
         $node->next = &$foundNode->next;
@@ -86,12 +86,12 @@ class DoublyLinkedList
 
     public function get(mixed $value): mixed
     {
-        return $this->search($value)->data;
+        return $this->find($value)->data;
     }
 
     public function remove(mixed $value)
     {
-        $node = $this->search($value);
+        $node = $this->find($value);
 
         if ($this->current === $node) {
             $this->current = &$this->head;
@@ -156,7 +156,7 @@ class DoublyLinkedList
         return $this->current;
     }
 
-    private function search(mixed $data): Node
+    private function find(mixed $data): Node
     {
         $head = &$this->head;
         for ($i = 0; $i < $this->getSize(); $i++) {

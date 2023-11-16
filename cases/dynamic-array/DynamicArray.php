@@ -50,6 +50,13 @@ class DynamicArray
         $this->size--;
     }
 
+    public function removeByElement(mixed $value): void
+    {
+        $index = $this->find($value);
+        
+        $this->remove($index);
+    }
+
     public function clear()
     {
         $this->array = new SplFixedArray($this->getSize());

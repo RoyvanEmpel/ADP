@@ -91,14 +91,14 @@ class DoublyLinkedListTest extends TestCase
         $list->get('Fusilli');
     }
 
-    public function testSearch()
+    public function testFind()
     {
         $list = new DoublyLinkedList();
 
         $pasta = new Pasta(PastaType::Spaghetti, SauceType::Tomatensaus);
         $list->append($pasta);
 
-        // The get method executes the search method.
+        // The get method executes the find method.
         $returnedPasta = $list->get($pasta);
         $this->assertEquals($pasta, $returnedPasta);
     }
