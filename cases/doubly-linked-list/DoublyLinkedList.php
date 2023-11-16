@@ -108,33 +108,40 @@ class DoublyLinkedList
         $this->size--;
     }
 
-    // public function next(): mixed
-    // {
-    //     if ($this->current === null) {
-    //         $this->current = &$this->head->next;
-    //     }
+    public function next(): mixed
+    {
+        if ($this->current === null) {
+            $this->current = &$this->head->next;
+        }
 
+        $this->current = &$this->current->next;
 
+        if (!isset($this->current->next)) {
+            throw new \Exception('Out of range');
+        }
 
-        // $this->current = &$this->current->next;
+        return $this->current->data;
+    }
 
-        // if ($this->current === null) {
-        //     throw new \Exception('Index out of range');
-        // }
+    public function prev(): mixed
+    {
+        if ($this->current === null) {
+            $this->current = &$this->head->next;
+        }
 
-    //     return $this->current->data;
-    // }
+        $this->current = &$this->current->prev;
 
-    // public function prev(): mixed
-    // {
-    //     $this->current = &$this->current->prev;
+        if (!isset($this->current->prev)) {
+            throw new \Exception('Out of range');
+        }
 
-    //     if ($this->current === null) {
-    //         throw new \Exception('Index out of range');
-    //     }
+        return $this->current->data;
+    }
 
-    //     return $this->current->data;
-    // }
+    public function current(): mixed
+    {
+        return $this->current?->data;
+    }
 
     public function getSize(): int
     {
@@ -151,11 +158,6 @@ class DoublyLinkedList
     {
         $this->current = &$this->tail->prev;
         return $this->current->data;
-    }
-
-    public function current(): mixed
-    {
-        return $this->current?->data;
     }
 
     public function find(mixed $data): ?Node
