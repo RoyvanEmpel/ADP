@@ -164,7 +164,7 @@ class DoublyLinkedList
     {
         $node = &$this->head->next;
 
-        while ($node !== null) {
+        while (isset($node->next)) {
             if ($data === $node->data) {
                 return $node;
             }
@@ -172,6 +172,16 @@ class DoublyLinkedList
         }
 
         throw new \Exception('Data not found in list');
+    }
+
+    public function contains(mixed $data): bool
+    {
+        try {
+            $this->find($data);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
     public function toArray(): array
