@@ -60,6 +60,7 @@ class DynamicArray
     public function clear()
     {
         $this->array = new SplFixedArray($this->getSize());
+        $this->size = 0;
     }
 
     public function getSize(): int
