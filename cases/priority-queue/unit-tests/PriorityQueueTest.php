@@ -73,24 +73,56 @@ class PriorityQueueTest extends TestCase
         }
 
         if (is_object($jsonContents)) {
-            foreach ($jsonContents as $testData) {
+            foreach ($jsonContents as $loop => $testData) {
                 $priorityQueue = new PriorityQueue();
                 $peekData = [];
 
-                // This index in the loop is the position of the value in the DoublyLinkedList.
-                // It is not set in the file so it will automaticly be the same as from the doubly linked list.
                 foreach ($testData as $value) {
-                    $prio = intval(round(rand(0, 100)));
-                    if (empty($peekData) || $peekData['priority'] <= $prio) {
+                    // echo PHP_EOL;
+                    // echo "---------------------- $index ----------------------";
+                    // echo PHP_EOL;
+                    $prio = rand(0, 100);
+
+                    if (empty($peekData) || ($peekData['priority'] <= $prio)) {
                         $peekData = [
                             'data' => $value,
-                            'priority' => $prio,
+                            'priority' => $prio
                         ];
+                    // } else {
+                        // echo "peekData niet hoger: " . $peekData['priority'] . " - " . $prio . " - " . $peekData['data'] . " - " . $value;
+                        // echo PHP_EOL;
                     }
 
                     $priorityQueue->add($value, $prio);
-                    $this->assertEquals($peekData['data'], $priorityQueue->peek());
+
+                    // print_r($priorityQueue->peekA());
+                    // print_r($peekData);
+                    // echo PHP_EOL;
+                    // echo PHP_EOL;
+                    // print_r($peekData['data'] . ' - ' . $priorityQueue->peek());
+
+                    // if ($peekData !== $priorityQueue->peek2()) {
+                    //     echo PHP_EOL;
+                    //     echo "fout!";
+                    //     echo PHP_EOL;
+                    //     print_r($peekData);
+                    //     print_r($priorityQueue->peek2());
+                    //     echo PHP_EOL;
+                    //     die;
+                    // } else {
+                    //     echo PHP_EOL;
+                    //     // print_r($peekData);
+                    // }
+
+                    $this->assertEquals($peekData, $priorityQueue->peek2());
                 }
+
+                // echo PHP_EOL;
+                // echo "==================================";
+                // echo PHP_EOL;
+                // if ($loop == 'lijst_float_8001') {
+                //     die;
+                // }
 
                 // Don't log to file because of infinite recursion in list.
             }
