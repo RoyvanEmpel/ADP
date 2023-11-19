@@ -12,12 +12,14 @@ function binarySearch(DynamicArray $array, int $search): int|bool
     while ($left <= $right) {
         $middle = floor(($left + $right) / 2);
 
-        if ($array->get($middle) < $search) {
+        $middleData = $array->get($middle);
+
+        if ($middleData < $search) {
             $left = $middle + 1;
-        } else if ($array->get($middle) > $search) {
+        } else if ($middleData > $search) {
             $right = $middle - 1;
         } else {
-            return $array->get($middle);
+            return $middleData;
         }
     }
 
@@ -27,19 +29,16 @@ function binarySearch(DynamicArray $array, int $search): int|bool
 function isSorted(mixed $array)
 {
     $length = count($array);
-    $checkValues = ['integer', 'float'];
-
-    $ascending = true;
 
     for ($i = 0; $i < $length; $i++) {
-        if (!in_array(gettype($array[$i]), $checkValues)) {
+        if (!is_numeric($array[$i])) {
             return false;
         }
 
         if (isset($array[$i - 1]) && $array[$i] < $array[$i - 1]) {
-            $ascending = false;
+            return false;
         }
     }
 
-    return $ascending;
+    return true;
 }
