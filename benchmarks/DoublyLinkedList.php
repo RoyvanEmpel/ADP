@@ -5,7 +5,7 @@ include(__DIR__ . '/../cases/doubly-linked-list/DoublyLinkedList.php');
 
 use Cases\DoublyLinkedList;
 
-$testingSize = 10000;
+$testingSize = 50000;
 $list = new DoublyLinkedList();
 
 echo "Testing DoublyLinkedList - add\n";
