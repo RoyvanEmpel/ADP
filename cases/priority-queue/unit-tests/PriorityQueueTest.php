@@ -7,6 +7,9 @@ include(__DIR__ . '/../../../Pasta.php');
 
 use PHPUnit\Framework\TestCase;
 use Cases\PriorityQueue;
+use Pasta;
+use PastaType;
+use SauceType;
 
 class PriorityQueueTest extends TestCase
 {
@@ -63,6 +66,29 @@ class PriorityQueueTest extends TestCase
         $this->expectExceptionMessage('Queue is empty');
 
         $this->priorityQueue->deleteMin();
+    }
+
+    public function testPastaPrio()
+    {
+        $pasta1 = new Pasta(PastaType::Spaghetti, SauceType::Tomatensaus);
+        $pasta2 = new Pasta(PastaType::Fusilli, SauceType::Pesto);
+
+        $this->priorityQueue->add($pasta1, 1); // prio 1
+        $this->priorityQueue->add($pasta2, 1); // prio 1
+
+        $this->priorityQueue->add($pasta1, 2); // prio 2
+        $this->priorityQueue->add($pasta2, 2); // prio 2
+
+        $this->assertEquals($pasta2, $this->priorityQueue->peek());
+        $this->assertEquals($pasta1, $this->priorityQueue->poll());
+
+        $pasta3 = new Pasta(PastaType::Spaghetti, SauceType::Pesto);
+        $this->priorityQueue->add($pasta3, 0); // prio 0
+        $this->assertEquals($pasta3, $this->priorityQueue->poll());
+
+        $pasta4 = new Pasta(PastaType::Fusilli, SauceType::Tomatensaus);
+        $this->priorityQueue->add($pasta4, 3); // prio 3
+        $this->assertEquals($pasta4, $this->priorityQueue->peek());
     }
 
     public function testWithJSONData(): void
