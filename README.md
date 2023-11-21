@@ -127,6 +127,25 @@ Het verwijderen van het hoogste element in een priority queue is een `O(1)` oper
 
 ---
 
+### Deque
+**Dataset**: `50.000` items in de array
+
+#### Insertion
+- **Time (insertLeft)**: `0.034 sec.`
+- **Time (insertRight)**: `0.040 sec.`
+
+**Analyse**:
+Het toevoegen van een element aan een deque is een `O(1)` operatie. Dit komt omdat het enkel de pointers van de betrokken nodes hoeft aan te passen.
+
+#### Deletion
+- **Time (deleteLeft)**: `0.020 sec.`
+- **Time (deleteRight)**: `0.020 sec.`
+
+**Analyse**:
+Het verwijderen van een element is een `O(1)` operatie. Dit komt omdat het enkel de pointers moet aanpassen van de vorige en volgende node.cc
+
+---
+
 ### Binary Search
 **Dataset**: `50.000` items in de array
 
