@@ -16,26 +16,22 @@ class Deque {
 
     public function insertLeft(mixed $value): void
     {
-        $this->deque->append($value);
+        $this->deque->prepend($value);
     }
 
     public function insertRight(mixed $value): void
     {
-        $this->deque->prepend($value);
+        $this->deque->append($value);
     }
 
     public function deleteLeft(): mixed
     {
-        $firstItem = $this->deque->start();
-        $this->deque->remove($firstItem);
-        return $firstItem;
+        return $this->deque->shift();
     }
 
     public function deleteRight(): mixed
     {
-        $lastItem = $this->deque->end();
-        $this->deque->remove($lastItem);
-        return $lastItem;
+        return $this->deque->pop();
     }
 
     public function getSize(): int
