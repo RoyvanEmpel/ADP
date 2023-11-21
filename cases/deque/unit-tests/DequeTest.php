@@ -57,6 +57,18 @@ class DequeTest extends TestCase
         $this->assertSame(0, $this->deque->getSize());
     }
 
+    public function testPastaDeque()
+    {
+        $pasta1 = new Pasta(PastaType::Spaghetti, SauceType::Tomatensaus);
+        $pasta2 = new Pasta(PastaType::Fusilli, SauceType::Pesto);
+
+        $this->deque->insertRight($pasta1); // [ 0 => $pasta1 ]
+        $this->deque->insertRight($pasta2); // [ 0 => $pasta1, 1 => $pasta2 ]
+        
+        $this->assertEquals($pasta2, $this->deque->deleteRight());
+        $this->assertEquals($pasta1, $this->deque->deleteRight());
+    }
+
     public function testWithJSONData(): void
     {
         $jsonContents = file_get_contents(__DIR__ . '/../../../assets/json/dataset_sorteren.json');
