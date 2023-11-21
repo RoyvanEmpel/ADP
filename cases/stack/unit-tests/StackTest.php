@@ -83,7 +83,7 @@ class StackTest extends TestCase
         }
 
         if (is_object($jsonContents)) {
-            foreach ($jsonContents as $key => $testData) {
+            foreach ($jsonContents as $testData) {
                 $stack = new Stack(); // [ ]
                 $this->assertEquals(true, $stack->isEmpty());
 
