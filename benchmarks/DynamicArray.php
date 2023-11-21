@@ -5,7 +5,7 @@ include(__DIR__ . '/../cases/dynamic-array/DynamicArray.php');
 
 use Cases\DynamicArray;
 
-$testingSize = 10000;
+$testingSize = 50000;
 $list = new DynamicArray();
 
 echo "Testing DynamicArray - add\n";

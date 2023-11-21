@@ -5,7 +5,7 @@ include(__DIR__ . '/../cases/priority-queue/PriorityQueue.php');
 
 use Cases\PriorityQueue;
 
-$testingSize = 1000000;
+$testingSize = 50000;
 $queue = new PriorityQueue();
 
 $testRandomPrio = [];
@@ -23,6 +23,9 @@ for ($i = 0; $i < $testingSize; $i++) {
 
 Benchmark::end('PriorityQueue - Add linear');
 
+unset($queue);
+// Clear queue
+$queue = new PriorityQueue();
 
 echo "Testing PriorityQueue - Add random\n";
 Benchmark::start('PriorityQueue - Add random');

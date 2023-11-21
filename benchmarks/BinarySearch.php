@@ -1,24 +1,27 @@
 <?php
 
+use Cases\DynamicArray;
+
 include(__DIR__ . '/Benchmark.php');
+include(__DIR__ . '/../cases/dynamic-array/DynamicArray.php');
 include(__DIR__ . '/../cases/binary-search/BinarySearch.php');
 
+$testingSize = 50000;
 
-$testingSize = 1000000;
-
-$testData = [];
+$testData = new DynamicArray();
 for ($i = 0; $i < $testingSize; $i++) { 
-  $testData[] = $i;
+  $testData->add($i);
 }
 
-echo "Testing BinarySearch - Add linear\n";
-Benchmark::start('BinarySearch - Add linear');
+echo "Testing BinarySearch\n";
+Benchmark::start('BinarySearch');
 
 for ($i = 0; $i < $testingSize; $i++) {
-    binarySearch($array, $i);
+    binarySearch($testData, $i);
 }
+$memoryUsage = Benchmark::memory();
 
-Benchmark::end('BinarySearch - Add linear');
+Benchmark::end('BinarySearch');
 
 print_r(Benchmark::getAll());
 echo "\nMemory used: " . $memoryUsage . "\n\n";
