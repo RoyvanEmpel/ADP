@@ -91,13 +91,6 @@ class StackTest extends TestCase
                     $stack->push($value);  // [ $value => ... ]
                     $this->assertEquals($value, $stack->top());
                 }
-
-                $filename = __DIR__ . '/logs/StackTest-' . $key . '.log';
-                if (!file_exists($filename)) {
-                    fopen($filename, 'w');
-                }
-
-                file_put_contents($filename, var_export($dynamicArray, true));
             }
         }
     }
