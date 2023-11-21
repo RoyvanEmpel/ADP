@@ -5,7 +5,6 @@ namespace Cases;
 include(__DIR__ . '/../../cases/doubly-linked-list/DoublyLinkedList.php');
 
 use Cases\DoublyLinkedList;
-use PHPUnit\Event\Runtime\PHP;
 
 class PriorityQueue
 {

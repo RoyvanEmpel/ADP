@@ -120,6 +120,7 @@ class DoublyLinkedListTest extends TestCase
     public function testPastaInsert()
     {
         $pasta1 = new Pasta(PastaType::Spaghetti, SauceType::Tomatensaus);
+        $pasta3 = new Pasta(PastaType::Spaghetti, SauceType::Tomatensaus);
         $pasta2 = new Pasta(PastaType::Fusilli, SauceType::Pesto);
 
         $this->list->append($pasta1); // [ 0 => $pasta1 ]
@@ -127,7 +128,7 @@ class DoublyLinkedListTest extends TestCase
         $this->list->start();
         
         $this->assertEquals($pasta2, $this->list->next());
-        $this->assertEquals($pasta1, $this->list->prev());
+        $this->assertEquals($pasta3, $this->list->prev());
 
         $this->assertEquals('Een heerlijke Fusilli met Pesto saus.', $this->list->next()->description());
         $this->assertEquals('Een heerlijke Spaghetti met Tomatensaus saus.', $this->list->prev()->description());

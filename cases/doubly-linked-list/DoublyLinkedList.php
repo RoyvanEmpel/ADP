@@ -48,7 +48,7 @@ class DoublyLinkedList
     {
         $node = new Node($data);
 
-        if ($before === null) {
+        if ($before == null) {
             $foundNode = &$this->head->next;
         } else {
             $foundNode = $this->find($before);
@@ -67,7 +67,7 @@ class DoublyLinkedList
     {
         $node = new Node($data);
 
-        if ($after === null) {
+        if ($after == null) {
             $foundNode = &$this->tail->prev;
         } else {
             $foundNode = $this->find($after);
@@ -188,7 +188,7 @@ class DoublyLinkedList
         $node = &$this->head->next;
 
         while (isset($node->next)) {
-            if ($data === $node->data) {
+            if ($data == $node->data) {
                 return $node;
             }
             $node = &$node->next;

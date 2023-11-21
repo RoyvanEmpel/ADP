@@ -50,11 +50,16 @@ class DynamicArray
         $this->size--;
     }
 
-    public function removeByElement(mixed $value): void
+    public function removeByElement(mixed $value): bool
     {
         $index = $this->find($value);
         
-        $this->remove($index);
+        if ($index !== null) {
+            $this->remove($index);
+            return true;
+        }
+
+        return false;
     }
 
     public function clear()

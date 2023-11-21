@@ -11,7 +11,6 @@ use Pasta;
 use PastaType;
 use SauceType;
 
-
 class DequeTest extends TestCase
 {
     private Deque $deque;
