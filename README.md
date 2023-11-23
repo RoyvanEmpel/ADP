@@ -2,7 +2,7 @@
 
 ## Execute the unit tests
 It's very simple to execute the unit tests. Just follow the stepts below.
-1. Open the codespace: https://refactored-goldfish-7w494vpp94cr449.github.dev/
+1. Open the codespace: https://github.com/codespaces/new/RoyvanEmpel/ADP
 2. execute `/bin/bash ./unit-tests.sh` inside the terminal in the codespace.
 3. Voilá, the unit tests for all cases have runned.
 
