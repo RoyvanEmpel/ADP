@@ -31,16 +31,3 @@ benchmark("MergeSort - Sort already sorted", test_sorted_asc.copy())
 
 print("Testing MergeSort - Desc sort to asc")
 benchmark("MergeSort - Desc sort to asc", test_sorted_desc.copy())
-
-def process_json_file(file_path):
-    with open(file_path, 'r') as file:
-        data = json.load(file)
-
-        for key, array in data.items():
-            print(f"Sorted array for {key}:")
-            sorted_array = merge_sort(array)
-            print(f"{sorted_array}")
-
-# Verander de pad naar het JSON-bestand indien nodig
-json_file_path = 'assets/json/dataset_sorteren.json'
-process_json_file(json_file_path)
