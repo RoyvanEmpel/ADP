@@ -11,19 +11,11 @@ from cases.merge_sort.MergeSort import merge_sort
 
 def benchmark(test_name, data):
     start_time = time.time()
-
-        # Voorbeeldgebruik
-    if __name__ == '__main__':
-        multiprocessing.freeze_support()  # Voor Windows-ondersteuning
-        # array = [34, 7, 23, 32, 5, 62, 10, 3, 100, 29]
-        sorted_array = merge_sort(data)
-        # print(sorted_array)
-
-    # merge_sort(data)
+    merge_sort(data)
     end_time = time.time()
     print(f"{test_name}: {end_time - start_time} seconden")
 
-testing_size = 1000000
+testing_size = 10000
 
 # Genereer willekeurige, oplopend gesorteerde en aflopend gesorteerde data
 test_random = [random.randint(0, 10000) for _ in range(testing_size)]
