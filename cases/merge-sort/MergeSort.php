@@ -1,6 +1,9 @@
 <?php
 
 namespace Cases;
+use Benchmark;
+
+include(__DIR__ . '/../../benchmarks/Benchmark.php');
 
 class MergeSort
 {
@@ -51,13 +54,22 @@ class MergeSort
 
 function testMergeSort(array $inputArray)
 {
-    echo "Original Array: " . implode(" ", $inputArray) . PHP_EOL;
+    // echo "Original Array: " . implode(" ", $inputArray) . PHP_EOL;
 
     mergeSort::mergeSort($inputArray);
 
-    echo "Sorted Array: " . implode(" ", $inputArray) . PHP_EOL;
+    // echo "Sorted Array: " . implode(" ", $inputArray) . PHP_EOL;
 }
 
 // Test with the provided array
+
 $inputArray = [8, 6, 0, 7, 5, 3, 1];
+for ($i=1000000; $i > 0; $i--) { 
+    $inputArray[] = $i;
+}
+
+Benchmark::start('MergeSort');
 testMergeSort($inputArray);
+Benchmark::end('MergeSort');
+
+print_r(Benchmark::getAll());
