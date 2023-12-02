@@ -23,12 +23,15 @@ def merge(left, right):
     return result
 
 def merge_sort(arr):
+    # Filter de array om alleen integers en floats te behouden
+    filtered_arr = [x for x in arr if isinstance(x, (int, float))]
+
     threshold = 1000  # Aanpassen op basis van de grootte van de dataset en de beschikbare resources
-    if len(arr) <= threshold:
-        return __merge_sort(arr)
+    if len(filtered_arr) <= threshold:
+        return __merge_sort(filtered_arr)
     else:
         with multiprocessing.Pool() as pool:
-            size = len(arr)
+            size = len(filtered_arr)
             mid = size // 2
-            left, right = pool.map(__merge_sort, [arr[:mid], arr[mid:]])
+            left, right = pool.map(__merge_sort, [filtered_arr[:mid], filtered_arr[mid:]])
             return merge(left, right)
