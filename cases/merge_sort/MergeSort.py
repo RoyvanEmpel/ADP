@@ -1,3 +1,4 @@
+module = 'cases'
 import concurrent.futures
 
 def merge_sort(array):
@@ -35,8 +36,3 @@ def merge(left_half, right_half):
         j += 1
     
     return merged
-
-# Test the function
-data = [38, 27, 43, 3, 9, 82, 10]
-sorted_data = merge_sort(data)
-print(sorted_data)
