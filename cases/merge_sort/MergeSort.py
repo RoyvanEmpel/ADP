@@ -1,38 +1,37 @@
-module = 'cases'
-import concurrent.futures
+import multiprocessing
 
-def merge_sort(array):
-    if len(array) <= 1:
-        return array
+def merge_sort(arr):
+    def __merge_sort(arr):
+        if len(arr) <= 1:
+            return arr
+        mid = len(arr) // 2
+        left = __merge_sort(arr[:mid])
+        right = __merge_sort(arr[mid:])
+        return merge(left, right)
 
-    mid = len(array) // 2
-    left_half = array[:mid]
-    right_half = array[mid:]
+    def merge(left, right):
+        result = []
+        i = j = 0
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                result.append(left[i])
+                i += 1
+            else:
+                result.append(right[j])
+                j += 1
+        result.extend(left[i:])
+        result.extend(right[j:])
+        return result
 
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        futures = [executor.submit(merge_sort, left_half),
-                   executor.submit(merge_sort, right_half)]
-        left_half, right_half = [f.result() for f in futures]
-
-    return merge(left_half, right_half)
-
-def merge(left_half, right_half):
-    merged = []
-    i = j = 0
-    while i < len(left_half) and j < len(right_half):
-        if left_half[i] < right_half[j]:
-            merged.append(left_half[i])
-            i += 1
+    def parallel_sort(arr, pool):
+        size = len(arr)
+        if size <= threshold:
+            return __merge_sort(arr)
         else:
-            merged.append(right_half[j])
-            j += 1
+            mid = size // 2
+            left, right = pool.map(__merge_sort, [arr[:mid], arr[mid:]])
+            return merge(left, right)
 
-    while i < len(left_half):
-        merged.append(left_half[i])
-        i += 1
-
-    while j < len(right_half):
-        merged.append(right_half[j])
-        j += 1
-    
-    return merged
+    threshold = 1000  # Aanpassen op basis van de grootte van de dataset en de beschikbare resources
+    with multiprocessing.Pool() as pool:
+        return parallel_sort(arr, pool)

@@ -1,20 +1,29 @@
-# Inhoud van benchmark.py
+# Inhoud van benchmark_merge_sort.py
 import sys
 import time
 import random
+import multiprocessing
 
-sys.path.append('cases.merge_sort')
+# Voeg het pad naar de map waar de cases directory zich bevindt toe
+sys.path.append('/var/www/ADP')
 
-from MergeSort import merge_sort
-
+from cases.merge_sort.MergeSort import merge_sort
 
 def benchmark(test_name, data):
     start_time = time.time()
-    merge_sort(data)
+
+        # Voorbeeldgebruik
+    if __name__ == '__main__':
+        multiprocessing.freeze_support()  # Voor Windows-ondersteuning
+        # array = [34, 7, 23, 32, 5, 62, 10, 3, 100, 29]
+        sorted_array = merge_sort(data)
+        # print(sorted_array)
+
+    # merge_sort(data)
     end_time = time.time()
     print(f"{test_name}: {end_time - start_time} seconden")
 
-testing_size = 10000
+testing_size = 1000000
 
 # Genereer willekeurige, oplopend gesorteerde en aflopend gesorteerde data
 test_random = [random.randint(0, 10000) for _ in range(testing_size)]
