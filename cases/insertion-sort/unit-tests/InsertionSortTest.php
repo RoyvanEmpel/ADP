@@ -2,95 +2,162 @@
 
 namespace UnitTests;
 
-include(__DIR__ . '/../PriorityQueue.php');
-include(__DIR__ . '/../../../Pasta.php');
+include(__DIR__ . '/../InsertionSort.php');
 
 use PHPUnit\Framework\TestCase;
-use Cases\PriorityQueue;
-use Pasta;
-use PastaType;
-use SauceType;
 
-class PriorityQueueTest extends TestCase
+class InsertionSortTest extends TestCase
 {
-    private PriorityQueue $priorityQueue;
-
-    protected function setUp(): void
+    private function isSorted(array $array, $order = 'asc'): bool
     {
-        $this->priorityQueue = new PriorityQueue();
+        $length = count($array);
+
+        for ($i = 0; $i < $length - 1; $i++) {
+            if (strtolower($order) == 'asc' && $array[$i] > $array[$i + 1]) {
+                return false;
+            } else if (strtolower($order) == 'desc' && $array[$i] < $array[$i + 1]) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    public function testAdd(): void
+    // ASC - sorting
+    public function testRandomArray()
     {
-        $this->priorityQueue->add('Item 1', 1);
-        $this->priorityQueue->add('Item 2', 2);
+        $randomArray = [];
+        for ($i = 0; $i < 100; $i++) { 
+            $randomArray[] = rand(0, 10000);
+        }
 
-        $this->assertEquals('Item 2', $this->priorityQueue->peek());
+        $originalArray = $randomArray;
+        $this->assertEquals($originalArray, $randomArray, 'Arrays should not be initially sorted.');
+        $this->assertFalse($this->isSorted($randomArray), 'Validate that the array is not sorted');
+
+        insertionSort($randomArray);
+
+        $this->assertTrue($this->isSorted($randomArray), 'Array should be sorted after insertion sort.');
     }
 
-    public function testPeek(): void
+    public function testSortedArray()
     {
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('Queue is empty');
+        $sortedArray = [];
+        for ($i = 0; $i < 100; $i++) { 
+            $sortedArray[] = $i;
+        }
 
-        $this->priorityQueue->peek();
+        $originalArray = $sortedArray;
+        $this->assertEquals($originalArray, $sortedArray, 'Arrays should be initially sorted.');
+        $this->assertTrue($this->isSorted($sortedArray), 'Validate that the array is sorted');
+
+        insertionSort($sortedArray);
+
+        $this->assertTrue($this->isSorted($sortedArray), 'Array should be sorted after insertion sort.');
+        $this->assertEquals($originalArray, $sortedArray, 'Check if after the method the array is still sorted.');
     }
 
-    public function testPoll(): void
+    public function testDescArray()
     {
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('Queue is empty');
+        $sortedArray = [];
+        for ($i = 100; $i >= 0; $i--) { 
+            $sortedArray[] = $i;
+        }
+        
+        $originalArray = $sortedArray;
+        $this->assertEquals($originalArray, $sortedArray, 'Arrays should be initially sorted.');
+        $this->assertFalse($this->isSorted($sortedArray), 'Validate that the array is sorted');
 
-        $this->priorityQueue->poll();
+        insertionSort($sortedArray);
+
+        $this->assertTrue($this->isSorted($sortedArray), 'Array should be sorted after insertion sort.');
     }
 
-    public function testInsert(): void
+    public function testSingleNumberArray()
     {
-        $this->priorityQueue->insert('Item 1', 1);
-        $this->priorityQueue->insert('Item 2', 2);
+        $singleNumArray = [];
+        for ($i = 0; $i < 100; $i++) { 
+            $singleNumArray[] = 2;
+        }
 
-        $this->assertEquals('Item 2', $this->priorityQueue->peek());
+        $originalArray = $singleNumArray;
+        $this->assertEquals($originalArray, $singleNumArray, 'Array should be sorted, but this is for the insertion to check');
+        $this->assertTrue($this->isSorted($singleNumArray), 'Array should be sorted');
+
+        insertionSort($singleNumArray);
+
+        $this->assertTrue($this->isSorted($singleNumArray), 'Array should be sorted after insertion sort.');
+        $this->assertEquals($originalArray, $singleNumArray, 'Check if after the method the array is still the same as before.');
     }
 
-    public function testFindMin(): void
-    {
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('Queue is empty');
 
-        $this->priorityQueue->findMin();
+    // Desc sorting
+    public function testRandomArrayDesc()
+    {
+        $randomArray = [];
+        for ($i = 0; $i < 100; $i++) { 
+            $randomArray[] = rand(0, 10000);
+        }
+
+        $originalArray = $randomArray;
+        $this->assertEquals($originalArray, $randomArray, 'Arrays should not be initially sorted.');
+        $this->assertFalse($this->isSorted($randomArray, 'desc'), 'Validate that the array is not sorted');
+
+        insertionSort($randomArray, 'desc');
+
+        $this->assertTrue($this->isSorted($randomArray, 'desc'), 'Array should be sorted after insertion sort.');
     }
 
-    public function testDeleteMin(): void
+    public function testSortedArrayDesc()
     {
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('Queue is empty');
+        $sortedArray = [];
+        for ($i = 0; $i < 100; $i++) { 
+            $sortedArray[] = $i;
+        }
 
-        $this->priorityQueue->deleteMin();
+        $originalArray = $sortedArray;
+        $this->assertEquals($originalArray, $sortedArray, 'Arrays should be initially sorted.');
+        $this->assertFalse($this->isSorted($sortedArray, 'desc'), 'Validate that the array is sorted');
+
+        insertionSort($sortedArray, 'desc');
+
+        $this->assertTrue($this->isSorted($sortedArray, 'desc'), 'Array should be sorted after insertion sort.');
     }
 
-    public function testPastaPrio()
+    public function testDescArrayDesc()
     {
-        $pasta1 = new Pasta(PastaType::Spaghetti, SauceType::Tomatensaus);
-        $pasta2 = new Pasta(PastaType::Fusilli, SauceType::Pesto);
+        $sortedArray = [];
+        for ($i = 100; $i >= 0; $i--) { 
+            $sortedArray[] = $i;
+        }
+        
+        $originalArray = $sortedArray;
+        $this->assertEquals($originalArray, $sortedArray, 'Arrays should be initially sorted.');
+        $this->assertTrue($this->isSorted($sortedArray, 'desc'), 'Validate that the array is sorted');
 
-        $this->priorityQueue->add($pasta1, 1); // prio 1
-        $this->priorityQueue->add($pasta2, 1); // prio 1
+        insertionSort($sortedArray, 'desc');
 
-        $this->priorityQueue->add($pasta1, 2); // prio 2
-        $this->priorityQueue->add($pasta2, 2); // prio 2
-
-        $this->assertEquals($pasta2, $this->priorityQueue->peek());
-        $this->assertEquals($pasta1, $this->priorityQueue->poll());
-
-        $pasta3 = new Pasta(PastaType::Spaghetti, SauceType::Pesto);
-        $this->priorityQueue->add($pasta3, 0); // prio 0
-        $this->assertEquals($pasta3, $this->priorityQueue->poll());
-
-        $pasta4 = new Pasta(PastaType::Fusilli, SauceType::Tomatensaus);
-        $this->priorityQueue->add($pasta4, 3); // prio 3
-        $this->assertEquals($pasta4, $this->priorityQueue->peek());
+        $this->assertTrue($this->isSorted($sortedArray, 'desc'), 'Array should be sorted after insertion sort.');
     }
 
+    public function testSingleNumberArrayDesc()
+    {
+        $singleNumArray = [];
+        for ($i = 0; $i < 100; $i++) { 
+            $singleNumArray[] = 2;
+        }
+
+        $originalArray = $singleNumArray;
+        $this->assertEquals($originalArray, $singleNumArray, 'Array should be sorted, but this is for the insertion to check');
+        $this->assertTrue($this->isSorted($singleNumArray, 'desc'), 'Array should be sorted');
+
+        insertionSort($singleNumArray, 'desc');
+
+        $this->assertTrue($this->isSorted($singleNumArray, 'desc'), 'Array should be sorted after insertion sort.');
+        $this->assertEquals($originalArray, $singleNumArray, 'Check if after the method the array is still the same as before.');
+    }
+
+    // JSON files
     public function testWithJSONData(): void
     {
         $jsonContents = file_get_contents(__DIR__ . '/../../../assets/json/dataset_sorteren.json');
@@ -99,25 +166,28 @@ class PriorityQueueTest extends TestCase
         }
 
         if (is_object($jsonContents)) {
+            // ASC - sorting
             foreach ($jsonContents as $testData) {
-                $priorityQueue = new PriorityQueue();
-                $peekData = [];
-
+                $array = [];
                 foreach ($testData as $value) {
-                    $prio = rand(0, 100);
-
-                    if (empty($peekData) || ($peekData['priority'] <= $prio)) {
-                        $peekData = [
-                            'data' => $value,
-                            'priority' => $prio
-                        ];
-                    }
-
-                    $priorityQueue->add($value, $prio);
-                    $this->assertEquals($peekData['data'], $priorityQueue->peek());
+                    $array[] = $value;
                 }
 
-                // Don't log to file because of infinite recursion in list.
+                insertionSort($array);
+                
+                $this->assertTrue($this->isSorted($array), 'Check if its sorted after the insertionSort. This should always be true');
+            }
+
+            // DESC - sorting
+            foreach ($jsonContents as $testData) {
+                $array = [];
+                foreach ($testData as $value) {
+                    $array[] = $value;
+                }
+
+                insertionSort($array, 'desc');
+                
+                $this->assertTrue($this->isSorted($array, 'desc'), 'Check if its sorted after the insertionSort. This should always be true');
             }
         }
     }
