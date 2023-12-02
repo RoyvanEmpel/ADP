@@ -181,11 +181,10 @@ Array
 ### Merge Sort
 Array
 (
-    [MergeSort - Random asc] => 0.88896203041077
-    [MergeSort - Sort already sorted] => 0.60334515571594
-    [MergeSort - Desc sort to asc] => 0.70394110679626
-    
-    [MergeSort2 - Random asc] => 0.74662804603577
-    [MergeSort2 - Sort already sorted] => 0.57624697685242
-    [MergeSort2 - Desc sort to asc] => 0.54515290260315
+    [MergeSort - Random asc] => 0.0063221454620361
+    [MergeSort - Sort already sorted] => 0.0044529438018799
+    [MergeSort - Desc sort to asc] => 0.0049970149993896
+    [MergeSort2 - Random asc] => 0.0054430961608887
+    [MergeSort2 - Sort already sorted] => 0.0042099952697754
+    [MergeSort2 - Desc sort to asc] => 0.0042099952697754
 )
