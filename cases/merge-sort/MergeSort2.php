@@ -1,7 +1,5 @@
 <?php
 
-include(__DIR__ . '/../../benchmarks/Benchmark.php');
-
 function mergeSort(&$array) {
     $arraySize = count($array);
     if ($arraySize < 2) {
@@ -43,16 +41,3 @@ function merge(&$array, $left, $right) {
         $j++; $k++;
     }
 }
-
-Benchmark::start('mergeSort');
-$inputArray = [8, 6, 0, 7, 5, 3, 1];
-for ($i=1000000; $i > 0; $i--) { 
-    $inputArray[] = $i;
-}
-
-mergeSort($inputArray);
-Benchmark::end('mergeSort');
-
-print_r(Benchmark::getAll());
-
-?>

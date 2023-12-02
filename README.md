@@ -154,3 +154,38 @@ Het verwijderen van een element is een `O(1)` operatie. Dit komt omdat het enkel
 
 **Analyse**:
 Binary search is een `O(log N)` operatie. Dit komt omdat het de dataset in tweeën splitst en vervolgens de helft van de dataset negeert. Het blijft dit doen totdat het het element vindt dat het zoekt.
+
+
+### Selection Sort
+Array
+(
+    [SelectionSort - Random asc] => 3.3749461174011
+    [SelectionSort - Random desc] => 2.14524102211
+    [SelectionSort - Sort already sorted] => 3.2478652000427
+    [SelectionSort - Sorted to desc] => 2.3876430988312
+    [SelectionSort - Desc sort already sorted] => 2.3455030918121
+    [SelectionSort - Desc sort to asc] => 2.7781879901886
+)
+
+### Insertion Sort
+Array
+(
+    [InsertionSort - Random asc] => 0.50020098686218
+    [InsertionSort - Random desc] => 0.51738214492798
+    [InsertionSort - Sort already sorted] => 0.00046110153198242
+    [InsertionSort - Sorted to desc] => 1.0312922000885
+    [InsertionSort - Desc sort already sorted] => 0.00060105323791504
+    [InsertionSort - Desc sort to asc] => 1.0338768959045
+)
+
+### Merge Sort
+Array
+(
+    [MergeSort - Random asc] => 0.88896203041077
+    [MergeSort - Sort already sorted] => 0.60334515571594
+    [MergeSort - Desc sort to asc] => 0.70394110679626
+    
+    [MergeSort2 - Random asc] => 0.74662804603577
+    [MergeSort2 - Sort already sorted] => 0.57624697685242
+    [MergeSort2 - Desc sort to asc] => 0.54515290260315
+)

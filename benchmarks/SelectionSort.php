@@ -25,37 +25,37 @@ for ($i = $testingSize; $i > 0; $i--) {
 echo "Testing SelectionSort - Random asc\n";
 $tmp = $testRandom;
 Benchmark::start('SelectionSort - Random asc');
-SelectionSort($tmp);
+selectionSort($tmp);
 Benchmark::end('SelectionSort - Random asc');
 
 echo "Testing SelectionSort - Random desc\n";
 $tmp = $testRandom;
 Benchmark::start('SelectionSort - Random desc');
-SelectionSort($tmp, 'desc');
+selectionSort($tmp, 'desc');
 Benchmark::end('SelectionSort - Random desc');
 
 echo "Testing SelectionSort - Sort already sorted\n";
 $tmp = $testSortedAsc;
 Benchmark::start('SelectionSort - Sort already sorted');
-SelectionSort($tmp);
+selectionSort($tmp);
 Benchmark::end('SelectionSort - Sort already sorted');
 
 echo "Testing SelectionSort - Sorted to desc\n";
 $tmp = $testSortedAsc;
 Benchmark::start('SelectionSort - Sorted to desc');
-SelectionSort($tmp, 'desc');
+selectionSort($tmp, 'desc');
 Benchmark::end('SelectionSort - Sorted to desc');
 
 echo "Testing SelectionSort - Desc sort already sorted\n";
 $tmp = $testSortedDesc;
 Benchmark::start('SelectionSort - Desc sort already sorted');
-SelectionSort($tmp, 'desc');
+selectionSort($tmp, 'desc');
 Benchmark::end('SelectionSort - Desc sort already sorted');
 
 echo "Testing SelectionSort - Desc sort to asc\n";
 $tmp = $testSortedDesc;
 Benchmark::start('SelectionSort - Desc sort to asc');
-SelectionSort($tmp);
+selectionSort($tmp);
 Benchmark::end('SelectionSort - Desc sort to asc');
 
 
