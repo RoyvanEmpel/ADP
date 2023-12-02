@@ -16,7 +16,7 @@ find "$ROOT_DIR" -type d -name "unit-tests" | while read -r test_dir; do
   # Voor elk Python-bestand in de huidige unit-tests directory
   find "$test_dir" -type f -name "*.py" | while read -r test_file; do
     echo "Running pytest on $test_file"    # Navigeer naar de unittest directory
-    python "$test_file"                     # Voer pytest uit met huidige bestandsnaam
+    python3 "$test_file"                     # Voer pytest uit met huidige bestandsnaam
   done
 done
 
