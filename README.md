@@ -157,6 +157,9 @@ Binary search is een `O(log N)` operatie. Dit komt omdat het de dataset in tweeÃ
 
 
 ### Selection Sort
+De selection sort is een `O(N2)` operatie.
+
+```
 Array
 (
     [SelectionSort - Random asc] => 3.3749461174011
@@ -166,8 +169,11 @@ Array
     [SelectionSort - Desc sort already sorted] => 2.3455030918121
     [SelectionSort - Desc sort to asc] => 2.7781879901886
 )
-
+```
 ### Insertion Sort
+De insertion sort is een `O(N2)` operatie.
+
+```
 Array
 (
     [InsertionSort - Random asc] => 0.50020098686218
@@ -177,8 +183,11 @@ Array
     [InsertionSort - Desc sort already sorted] => 0.00060105323791504
     [InsertionSort - Desc sort to asc] => 1.0338768959045
 )
-
+```
 ### Merge Sort
+De merge sort is een `O(N log N)` operatie.
+
+```
 Array
 (
     [MergeSort - Random asc] => 0.0063221454620361
@@ -188,3 +197,4 @@ Array
     [MergeSort2 - Sort already sorted] => 0.0042099952697754
     [MergeSort2 - Desc sort to asc] => 0.0042099952697754
 )
+```
