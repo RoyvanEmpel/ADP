@@ -1,6 +1,5 @@
 <?php
 
-
 function selectionSort(array &$array, $order = 'ASC')
 {
     $arrayLength = count($array);
