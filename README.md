@@ -198,3 +198,9 @@ Array
     [MergeSort2 - Desc sort to asc] => 0.0042099952697754
 )
 ```
+
+```
+MergeSort - Random: 0.02898383140563965
+MergeSort - Sort already sorted: 0.017202138900756836
+MergeSort - Desc sort to asc: 0.018115520477294922
+```
