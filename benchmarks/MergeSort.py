@@ -2,7 +2,6 @@
 import sys
 import time
 import random
-import multiprocessing
 
 # Voeg het pad naar de map waar de cases directory zich bevindt toe
 sys.path.append('/var/www/ADP')
