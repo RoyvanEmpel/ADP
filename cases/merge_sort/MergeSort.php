@@ -53,7 +53,7 @@ function testMergeSort(array $inputArray)
 {
     // echo "Original Array: " . implode(" ", $inputArray) . PHP_EOL;
 
-    mergeSort::mergeSort($inputArray);
+    MergeSort::mergeSort($inputArray);
 
     // echo "Sorted Array: " . implode(" ", $inputArray) . PHP_EOL;
 }
