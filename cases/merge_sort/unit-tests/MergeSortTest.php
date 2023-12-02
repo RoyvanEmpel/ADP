@@ -3,16 +3,27 @@
 namespace UnitTests;
 
 include(__DIR__ . '/../MergeSort.php');
-include(__DIR__ . '/../../../Pasta.php');
 
 use PHPUnit\Framework\TestCase;
-use Cases\PriorityQueue;
-use Pasta;
-use PastaType;
-use SauceType;
+use Cases\MergeSort;
 
-class PriorityQueueTest extends TestCase
+class MergeSortTest extends TestCase
 {
+    private function isSorted(array $array, $order = 'asc'): bool
+    {
+        $length = count($array);
+
+        for ($i = 0; $i < $length - 1; $i++) {
+            if (strtolower($order) == 'asc' && $array[$i] > $array[$i + 1]) {
+                return false;
+            } else if (strtolower($order) == 'desc' && $array[$i] < $array[$i + 1]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public function testMergeSort()
     {
         $inputArray = [4, 2, 6, 8, 1, 3, 5, 7];
