@@ -159,7 +159,7 @@ Binary search is een `O(log N)` operatie. Dit komt omdat het de dataset in twee√
 ### Selection Sort
 De selection sort is een `O(N2)` operatie.
 
-**Dataset**: 10.000` items in de array
+**Dataset**: `10.000` items in de array
 
 - **Time - Random asc**: `3.374 sec.`	
 - **Time - Random desc**: `2.145 sec.`
@@ -171,7 +171,7 @@ De selection sort is een `O(N2)` operatie.
 ### Insertion Sort
 De insertion sort is een `O(N2)` operatie.
 
-**Dataset**: 10.000` items in de array
+**Dataset**: `10.000` items in de array
 
 - **Time - Random asc**: `0.500 sec.`
 - **Time - Random desc**: `0.517 sec.`
@@ -183,7 +183,7 @@ De insertion sort is een `O(N2)` operatie.
 ### Merge Sort
 De merge sort is een `O(N log N)` operatie.
 
-**Dataset**: 10.000` items in de array
+**Dataset**: `10.000` items in de array
 
 Python:
 - **Time - Random**: `0.029 sec.`
