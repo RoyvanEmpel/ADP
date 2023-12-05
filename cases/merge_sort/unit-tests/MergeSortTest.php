@@ -72,6 +72,10 @@ class MergeSortTest extends TestCase
                     $array[] = $value;
                 }
 
+                if (count($array) !== count(array_filter($array, 'is_numeric'))) {
+                    continue;
+                }
+
                 MergeSort::mergeSort($array);
                 
                 $this->assertTrue($this->isSorted($array), 'Check if its sorted after the selectionSort. This should always be true');

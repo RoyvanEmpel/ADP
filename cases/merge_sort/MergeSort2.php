@@ -1,6 +1,6 @@
 <?php
 
-function mergeSort(&$array) {
+function mergeSort(array &$array) {
     $arraySize = count($array);
     if ($arraySize < 2) {
         return;
@@ -15,7 +15,7 @@ function mergeSort(&$array) {
     merge($array, $left, $right);
 }
 
-function merge(&$array, $left, $right) {
+function merge(array &$array, array $left, array $right) {
     $i = 0; $j = 0; $k = 0;
     $leftSize = count($left);
     $rightSize = count($right);

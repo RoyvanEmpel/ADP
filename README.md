@@ -159,48 +159,43 @@ Binary search is een `O(log N)` operatie. Dit komt omdat het de dataset in tweeÃ
 ### Selection Sort
 De selection sort is een `O(N2)` operatie.
 
-```
-Array
-(
-    [SelectionSort - Random asc] => 3.3749461174011
-    [SelectionSort - Random desc] => 2.14524102211
-    [SelectionSort - Sort already sorted] => 3.2478652000427
-    [SelectionSort - Sorted to desc] => 2.3876430988312
-    [SelectionSort - Desc sort already sorted] => 2.3455030918121
-    [SelectionSort - Desc sort to asc] => 2.7781879901886
-)
-```
+**Dataset**: `10.000` items in de array
+
+- **Time - Random asc**: `3.374 sec.`	
+- **Time - Random desc**: `2.145 sec.`
+- **Time - Sort already sorted**: `3.247 sec.`
+- **Time - Sorted to desc**: `2.387 sec.`
+- **Time - Desc sort already sorted**: `2.345 sec.`
+- **Time - Desc sort to asc**: `2.778 sec.`
+
 ### Insertion Sort
 De insertion sort is een `O(N2)` operatie.
 
-```
-Array
-(
-    [InsertionSort - Random asc] => 0.50020098686218
-    [InsertionSort - Random desc] => 0.51738214492798
-    [InsertionSort - Sort already sorted] => 0.00046110153198242
-    [InsertionSort - Sorted to desc] => 1.0312922000885
-    [InsertionSort - Desc sort already sorted] => 0.00060105323791504
-    [InsertionSort - Desc sort to asc] => 1.0338768959045
-)
-```
+**Dataset**: `10.000` items in de array
+
+- **Time - Random asc**: `0.500 sec.`
+- **Time - Random desc**: `0.517 sec.`
+- **Time - Sort already sorted**: `0.0005 sec.`
+- **Time - Sorted to desc**: `1.031 sec.`
+- **Time - Desc sort already sorted**: `0.0006 sec.`
+- **Time - Desc sort to asc**: `1.034 sec.`
+
 ### Merge Sort
 De merge sort is een `O(N log N)` operatie.
 
-```
-Array
-(
-    [MergeSort - Random asc] => 0.0063221454620361
-    [MergeSort - Sort already sorted] => 0.0044529438018799
-    [MergeSort - Desc sort to asc] => 0.0049970149993896
-    [MergeSort2 - Random asc] => 0.0054430961608887
-    [MergeSort2 - Sort already sorted] => 0.0042099952697754
-    [MergeSort2 - Desc sort to asc] => 0.0042099952697754
-)
-```
+**Dataset**: `10.000` items in de array
 
-```
-MergeSort - Random: 0.02898383140563965
-MergeSort - Sort already sorted: 0.017202138900756836
-MergeSort - Desc sort to asc: 0.018115520477294922
-```
+Python:
+- **Time - Random**: `0.029 sec.`
+- **Time - Sort already sorted**: `0.017 sec.`
+- **Time - Desc sort to asc**: `0.018 sec.`
+
+PHP V1:
+- **Time - Random asc**: `0.006 sec.`
+- **Time - Sort already sorted**: `0.004 sec.`
+- **Time - Desc sort to asc**: `0.005 sec.`
+
+PHP V2:
+- **Time - Random asc**: `0.005 sec.`
+- **Time - Sort already sorted**: `0.004 sec.`
+- **Time - Desc sort to asc**: `0.004 sec.`

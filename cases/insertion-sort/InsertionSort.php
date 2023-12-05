@@ -4,6 +4,7 @@ function insertionSort(array &$array, string $order = "asc")
 {
     for ($i = 1; $i < count($array); $i++) {
         $toBeInserted = $array[$i];
+
         $j = $i;
         if (strtolower($order) == "asc") {
             while ($j > 0 && $toBeInserted < $array[$j - 1]) {
@@ -16,6 +17,7 @@ function insertionSort(array &$array, string $order = "asc")
                 $j--;
             }
         }
+        
         $array[$j] = $toBeInserted;
     }
 
