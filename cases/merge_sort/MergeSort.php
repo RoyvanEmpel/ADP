@@ -51,9 +51,5 @@ class MergeSort
 
 function testMergeSort(array $inputArray)
 {
-    // echo "Original Array: " . implode(" ", $inputArray) . PHP_EOL;
-
     MergeSort::mergeSort($inputArray);
-
-    // echo "Sorted Array: " . implode(" ", $inputArray) . PHP_EOL;
 }

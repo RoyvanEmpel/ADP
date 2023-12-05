@@ -23,10 +23,9 @@ def merge(left, right):
     return result
 
 def merge_sort(arr):
-    # Filter de array om alleen integers en floats te behouden
     filtered_arr = [x for x in arr if isinstance(x, (int, float))]
 
-    threshold = 1000  # Aanpassen op basis van de grootte van de dataset en de beschikbare resources
+    threshold = 1000
     if len(filtered_arr) <= threshold:
         return __merge_sort(filtered_arr)
     else:

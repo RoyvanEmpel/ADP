@@ -4,7 +4,6 @@ import sys
 import time
 import random
 
-# Voeg het pad naar de map waar de cases directory zich bevindt toe
 sys.path.append('/workspaces/ADP')
 
 from cases.merge_sort.MergeSort import merge_sort
@@ -17,12 +16,10 @@ def benchmark(test_name, data):
 
 testing_size = 10000
 
-# Genereer willekeurige, oplopend gesorteerde en aflopend gesorteerde data
 test_random = [random.randint(0, 10000) for _ in range(testing_size)]
 test_sorted_asc = list(range(testing_size))
 test_sorted_desc = list(range(testing_size, 0, -1))
 
-# Voer benchmarks uit
 print("Testing MergeSort - Random")
 benchmark("MergeSort - Random", test_random.copy())
 
