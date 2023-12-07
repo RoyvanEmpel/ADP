@@ -199,3 +199,12 @@ PHP V2:
 - **Time - Random asc**: `0.005 sec.`
 - **Time - Sort already sorted**: `0.004 sec.`
 - **Time - Desc sort to asc**: `0.004 sec.`
+
+### Quick Sort
+De quick sort is een `O(N log N)` operatie.
+
+**Dataset**: `10.000` items in de array
+
+- **Time - Random asc**: `0.014 sec.`
+- **Time - Sort already sorted**: `0.008 sec.`
+- **Time - Desc sort to asc**: `0.006 sec.`
