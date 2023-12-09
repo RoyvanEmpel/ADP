@@ -208,3 +208,12 @@ De quick sort is een `O(N log N)` operatie.
 - **Time - Random asc**: `0.014 sec.`
 - **Time - Sort already sorted**: `0.008 sec.`
 - **Time - Desc sort to asc**: `0.006 sec.`
+
+### Hashtable
+
+**Dataset**: `50.000` items in de array
+
+- **Time - add**: `61.116 sec.`
+- **Time - get**: `73.963 sec.`
+- **Time - update**: `74.800 sec.`
+- **Time - delete**: `47.111 sec.`

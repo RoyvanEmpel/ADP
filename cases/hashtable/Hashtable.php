@@ -31,7 +31,6 @@ class Hashtable
 
     $this->hashtable[$index] = [
       'key' => $key,
-      'hash' => $this->hash($key),
       'value' => $value
     ];
   }
