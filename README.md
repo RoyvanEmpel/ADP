@@ -208,3 +208,13 @@ De quick sort is een `O(N log N)` operatie.
 - **Time - Random asc**: `0.014 sec.`
 - **Time - Sort already sorted**: `0.008 sec.`
 - **Time - Desc sort to asc**: `0.006 sec.`
+
+### Hashtable
+40 mb
+Array
+(
+    [Hashtable - add] => 61.115920066833
+    [Hashtable - get] => 73.96279501915
+    [Hashtable - update] => 74.799787044525
+    [Hashtable - delete] => 47.110685110092
+)
