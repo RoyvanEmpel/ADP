@@ -210,11 +210,10 @@ De quick sort is een `O(N log N)` operatie.
 - **Time - Desc sort to asc**: `0.006 sec.`
 
 ### Hashtable
-40 mb
-Array
-(
-    [Hashtable - add] => 61.115920066833
-    [Hashtable - get] => 73.96279501915
-    [Hashtable - update] => 74.799787044525
-    [Hashtable - delete] => 47.110685110092
-)
+
+**Dataset**: `50.000` items in de array
+
+- **Time - add**: `61.116 sec.`
+- **Time - get**: `73.963 sec.`
+- **Time - update**: `74.800 sec.`
+- **Time - delete**: `47.111 sec.`
