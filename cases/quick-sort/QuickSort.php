@@ -16,19 +16,21 @@ class QuickSort
 
     private static function partition(array &$array, int $low, int $high, $order)
     {
-        $pivot = self::getPivot($array, $low, $high);
+        $pivotIndex = self::getPivot($low, $high);
+        $pivot = $array[$pivotIndex];
+        self::swap($array, $pivotIndex, $high); // Pivot tijdelijk naar einde verplaatsen
 
-        $i = $low - 1;
+        $i = $low;
 
         for ($j = $low; $j < $high; $j++) {
-            if (($order == 'asc' && $array[$j] <= $pivot) || ($order == 'desc' && $array[$j] >= $pivot)) {
-                $i++;
+            if (($order == 'asc' && $array[$j] < $pivot) || ($order == 'desc' && $array[$j] > $pivot)) {
                 self::swap($array, $i, $j);
+                $i++;
             }
         }
 
-        self::swap($array, $i + 1, $high);
-        return $i + 1;
+        self::swap($array, $i, $high);
+        return $i;
     }
 
     private static function swap(array &$array, int $i, int $j)
@@ -38,14 +40,8 @@ class QuickSort
         $array[$j] = $temp;
     }
 
-    private static function getPivot(array &$array, int $low, int $high)
+    private static function getPivot(int $low, int $high)
     {
-        $mid = $low + (int)(($high - $low) / 2);
-        $pivotIndices = [$low, $mid, $high];
-        sort($pivotIndices);
-        $pivotIndex = $pivotIndices[1];
-        $pivot = $array[$pivotIndex];
-
-        return $pivot;
+        return $low + (int)(($high - $low) / 2);
     }
 }
