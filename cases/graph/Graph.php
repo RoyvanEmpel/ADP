@@ -63,5 +63,4 @@ class Graph
 
         return $output;
     }
-
 }

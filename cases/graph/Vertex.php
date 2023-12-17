@@ -47,6 +47,7 @@ class Vertex
     {
         $this->previous = $previous;
     }
+
     public function addEdge(Edge $edge): void
     {
         $this->adjacentEdges[] = $edge;
