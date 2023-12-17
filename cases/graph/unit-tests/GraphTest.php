@@ -52,7 +52,11 @@ class GraphTest extends TestCase
     {
         
         foreach ($lijnlijst as $edge) {
-            list($node1, $node2, $cost) = $edge;
+            if (count($edge) === 3) {
+                [$node1, $node2, $cost] = $edge;
+            } else {
+                [$node1, $node2] = $edge;
+            }
 
             if (!isset($cost)) {
                 $cost = 1;
