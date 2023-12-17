@@ -20,8 +20,10 @@ for ($i = 0; $i < $testingSize; $i++) {
 }
 Benchmark::end('Create vertexes');
 
-Benchmark::start('Create edges');
-// Create edges (random vertexes) every must have 1 edge going to it
+Benchmark::start('Create edges (at least one edge leaving from it)');
+// Create edges
+// Here give every vertex a least one leaving from it.
+// This means that some vertexes will not have a edge going to it.
 for ($i = 0; $i < $testingSize; $i++) {
     $vertex = $graph->getVertex($i);
 
@@ -36,7 +38,33 @@ for ($i = 0; $i < $testingSize; $i++) {
         $vertex->addEdge($edge);
     }
 }
-Benchmark::end('Create edges');
+Benchmark::end('Create edges (at least one edge leaving from it)');
+
+// reset
+$graph = new Graph();
+for ($i = 0; $i < $testingSize; $i++) {
+    $vertex = new Vertex($i);
+
+    $graph->addVertex($vertex);
+}
+
+Benchmark::start('Create edges (a least one edge coming to it)');
+// Create edges
+for ($i = 0; $i < $testingSize; $i++) {
+    $destinationVertex = $graph->getVertex($i);
+
+    $edgeAmount = rand(1, 4);
+    for ($j = 0; $j < $edgeAmount; $j++) {
+        $randomVertex = $graph->getVertex(rand(0, $testingSize - 1));
+
+        $cost = rand(1, $testingSize / 2);
+
+        $edge = new Edge($destinationVertex, $cost);
+
+        $randomVertex->addEdge($edge);
+    }
+}
+Benchmark::end('Create edges (a least one edge coming to it)');
 
 echo PHP_EOL;
 echo PHP_EOL;
