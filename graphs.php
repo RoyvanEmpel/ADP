@@ -74,7 +74,6 @@ $lists['adjacencyMatrixWeigted'] = $edgeListWeigted->toArray();
                 var canvas = document.getElementById('<?= $key ?>');
                 var context = canvas.getContext('2d');
 
-                // PHP-generatie van Vertex- en Edge-objecten
                 var nodes = <?= json_encode($graph) ?>;
 
                 var gridSize = 60; // Afstand tussen cirkels
