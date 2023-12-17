@@ -65,11 +65,13 @@ class GraphTest extends TestCase
                 $cost = 1;
             }
 
+            // Create vertex 1 if it doesn't exist yet
             if (($vertex1 = $this->graph->getVertex($node1)) === null) {
                 $vertex1 = new Vertex($node1);
                 $this->graph->addVertex($vertex1);
             }
 
+            // Create vertex 2 if it doesn't exist yet
             if (($vertex2 = $this->graph->getVertex($node2)) === null) {
                 $vertex2 = new Vertex($node2);
                 $this->graph->addVertex($vertex2);
@@ -113,6 +115,7 @@ class GraphTest extends TestCase
     private function importAdjacencyList(array $adjacentielijst): void
     {
         foreach ($adjacentielijst as $node => $adjacentNodes) {
+            // Create vertex 1 if it doesn't exist yet
             if (($vertex1 = $this->graph->getVertex($node)) === null) {
                 $vertex1 = new Vertex($node);
                 $this->graph->addVertex($vertex1);
@@ -127,6 +130,65 @@ class GraphTest extends TestCase
 
                 $vertex2 = null;
 
+                // Create vertex 2 if it doesn't exist yet
+                if (($vertex2 = $this->graph->getVertex($adjacentNode)) === null) {
+                    $vertex2 = new Vertex($adjacentNode);
+                    $this->graph->addVertex($vertex2);
+                }
+
+                $edge1 = new Edge($vertex2, $cost);
+                $vertex1->addEdge($edge1);
+            }
+        }
+    }
+
+    /**
+     * Importer tests for Adjacency Matrix and Adjacency Matrix Weighted
+     */
+
+    public function testImportAdjacencyMatrix(): void
+    {
+        $this->importAdjacencyMatrix($this->dataset['verbindingsmatrix']);
+
+        echo PHP_EOL;
+        echo "Adjacency Matrix: " . PHP_EOL;
+        echo $this->graph;
+        echo PHP_EOL;
+        echo PHP_EOL;
+
+        $this->assertTrue(true);
+    }
+
+    public function testImportAdjacencyMatrixWeighted(): void
+    {
+        $this->importAdjacencyMatrix($this->dataset['verbindingsmatrix_gewogen']);
+
+        echo PHP_EOL;
+        echo "Adjacency Matrix Weighted: " . PHP_EOL;
+        echo $this->graph;
+        echo PHP_EOL;
+        echo PHP_EOL;
+
+        $this->assertTrue(true);
+    }
+
+    private function importAdjacencyMatrix(array $adjacentiematrix): void
+    {
+        foreach ($adjacentiematrix as $node => $adjacentNodes) {
+            // Create vertex 1 if it doesn't exist yet
+            if (($vertex1 = $this->graph->getVertex($node)) === null) {
+                $vertex1 = new Vertex($node);
+                $this->graph->addVertex($vertex1);
+            }
+
+            foreach ($adjacentNodes as $adjacentNode => $cost) {
+                if ($cost === 0) {
+                    continue;
+                }
+
+                $vertex2 = null;
+
+                // Create vertex 2 if it doesn't exist yet
                 if (($vertex2 = $this->graph->getVertex($adjacentNode)) === null) {
                     $vertex2 = new Vertex($adjacentNode);
                     $this->graph->addVertex($vertex2);
