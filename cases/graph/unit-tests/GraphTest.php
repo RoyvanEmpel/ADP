@@ -22,9 +22,9 @@ class GraphTest extends TestCase
         $this->dataset = json_decode($dataset, true);
     }
 
-    public function testImportLijnlijst(): void
+    public function testImportEdgeLine(): void
     {
-        $this->importLijnlijst($this->dataset['lijnlijst']);
+        $this->importEdgeLine($this->dataset['lijnlijst']);
 
         echo PHP_EOL;
         echo PHP_EOL;
@@ -35,9 +35,9 @@ class GraphTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testImportLijnlijstGewogen(): void
+    public function testImportEdgeLineWeighed(): void
     {
-        $this->importLijnlijst($this->dataset['lijnlijst_gewogen']);
+        $this->importEdgeLine($this->dataset['lijnlijst_gewogen']);
 
         echo PHP_EOL;
         echo PHP_EOL;
@@ -48,7 +48,7 @@ class GraphTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function importLijnlijst(array $lijnlijst): void
+    private function importEdgeLine(array $lijnlijst): void
     {
         
         foreach ($lijnlijst as $edge) {
