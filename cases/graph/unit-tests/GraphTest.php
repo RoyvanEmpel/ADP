@@ -31,7 +31,7 @@ class GraphTest extends TestCase
         $this->importEdgeLine($this->dataset['lijnlijst']);
 
         echo PHP_EOL;
-        echo PHP_EOL;
+        echo "EdgeLine: " . PHP_EOL;
         echo $this->graph;
         echo PHP_EOL;
         echo PHP_EOL;
@@ -44,7 +44,7 @@ class GraphTest extends TestCase
         $this->importEdgeLine($this->dataset['lijnlijst_gewogen']);
 
         echo PHP_EOL;
-        echo PHP_EOL;
+        echo "EdgeLine Weighted: " . PHP_EOL;
         echo $this->graph;
         echo PHP_EOL;
         echo PHP_EOL;
@@ -89,7 +89,7 @@ class GraphTest extends TestCase
         $this->importAdjacencyList($this->dataset['verbindingslijst']);
 
         echo PHP_EOL;
-        echo PHP_EOL;
+        echo "Adjacency List: " . PHP_EOL;
         echo $this->graph;
         echo PHP_EOL;
         echo PHP_EOL;
@@ -102,7 +102,7 @@ class GraphTest extends TestCase
         $this->importAdjacencyList($this->dataset['verbindingslijst_gewogen']);
 
         echo PHP_EOL;
-        echo PHP_EOL;
+        echo "Adjacency List Weighted: " . PHP_EOL;
         echo $this->graph;
         echo PHP_EOL;
         echo PHP_EOL;
