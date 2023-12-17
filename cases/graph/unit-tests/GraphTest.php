@@ -22,6 +22,10 @@ class GraphTest extends TestCase
         $this->dataset = json_decode($dataset, true);
     }
 
+    /**
+     * Importer tests for Edge Line and Edge Line Weighted
+     */
+
     public function testImportEdgeLine(): void
     {
         $this->importEdgeLine($this->dataset['lijnlijst']);
@@ -35,7 +39,7 @@ class GraphTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testImportEdgeLineWeighed(): void
+    public function testImportEdgeLineWeighted(): void
     {
         $this->importEdgeLine($this->dataset['lijnlijst_gewogen']);
 
@@ -48,10 +52,9 @@ class GraphTest extends TestCase
         $this->assertTrue(true);
     }
 
-    private function importEdgeLine(array $lijnlijst): void
+    private function importEdgeLine(array $edgeList): void
     {
-        
-        foreach ($lijnlijst as $edge) {
+        foreach ($edgeList as $edge) {
             if (count($edge) === 3) {
                 [$node1, $node2, $cost] = $edge;
             } else {
@@ -75,6 +78,63 @@ class GraphTest extends TestCase
             $edge1 = new Edge($vertex2, $cost);
             $vertex1->addEdge($edge1);
         }
+    }
 
+    /**
+     * Importer tests for Adjacency List and Adjacency List Weighted
+     */
+
+    public function testImportAdjacencyList(): void
+    {
+        $this->importAdjacencyList($this->dataset['verbindingslijst']);
+
+        echo PHP_EOL;
+        echo PHP_EOL;
+        echo $this->graph;
+        echo PHP_EOL;
+        echo PHP_EOL;
+
+        $this->assertTrue(true);
+    }
+
+    public function testImportAdjacencyListWeighted(): void
+    {
+        $this->importAdjacencyList($this->dataset['verbindingslijst_gewogen']);
+
+        echo PHP_EOL;
+        echo PHP_EOL;
+        echo $this->graph;
+        echo PHP_EOL;
+        echo PHP_EOL;
+
+        $this->assertTrue(true);
+    }
+
+    private function importAdjacencyList(array $adjacentielijst): void
+    {
+        foreach ($adjacentielijst as $node => $adjacentNodes) {
+            if (($vertex1 = $this->graph->getVertex($node)) === null) {
+                $vertex1 = new Vertex($node);
+                $this->graph->addVertex($vertex1);
+            }
+
+            foreach ($adjacentNodes as $adjacentNode) {
+                $cost = 1;
+                
+                if (is_array($adjacentNode)) {
+                    [$adjacentNode, $cost] = $adjacentNode;
+                }
+
+                $vertex2 = null;
+
+                if (($vertex2 = $this->graph->getVertex($adjacentNode)) === null) {
+                    $vertex2 = new Vertex($adjacentNode);
+                    $this->graph->addVertex($vertex2);
+                }
+
+                $edge1 = new Edge($vertex2, $cost);
+                $vertex1->addEdge($edge1);
+            }
+        }
     }
 }
