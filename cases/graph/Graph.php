@@ -63,4 +63,29 @@ class Graph
 
         return $output;
     }
+
+    public function toArray(): array
+    {
+        $graphArray = [];
+
+        foreach ($this->vertexMap as $vertex) {
+            $vertexArray = [
+                'name' => $vertex->getName(),
+                'adjacentEdges' => []
+            ];
+
+            foreach ($vertex->getAdjacentEdges() as $edge) {
+                $edgeArray = [
+                    'destination' => $edge->getDestination()->getName(),
+                    'cost' => $edge->getCost()
+                ];
+
+                $vertexArray['adjacentEdges'][] = $edgeArray;
+            }
+
+            $graphArray[] = $vertexArray;
+        }
+
+        return $graphArray;
+    }
 }
