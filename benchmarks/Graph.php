@@ -50,6 +50,9 @@ for ($i = 0; $i < $testingSize; $i++) {
 
 Benchmark::start('Create edges (a least one edge coming to it)');
 // Create edges
+// Here give every vertex a least one coming to it.
+// This means that some vertexes will not have a edge leaving from it.
+// But all vertexes will have a edge coming to it.
 for ($i = 0; $i < $testingSize; $i++) {
     $destinationVertex = $graph->getVertex($i);
 
