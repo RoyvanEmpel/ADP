@@ -18,7 +18,7 @@ class QuickSort
     {
         $pivotIndex = self::getPivot($low, $high);
         $pivot = $array[$pivotIndex];
-        self::swap($array, $pivotIndex, $high); // Pivot tijdelijk naar einde verplaatsen
+        self::swap($array, $pivotIndex, $high);
 
         $i = $low;
 
