@@ -11,21 +11,21 @@ $list = new Hashtable($testingSize);
 echo "Testing Hashtable - add\n";
 Benchmark::start('Hashtable - add');
 for ($i = 0; $i < $testingSize; $i++) {
-  $list->insert('key' . $i, ['money' => 22 + $i]);
+    $list->insert('key' . $i, ['money' => 22 + $i]);
 }
 Benchmark::end('Hashtable - add');
 
 echo "Testing Hashtable - get\n";
 Benchmark::start('Hashtable - get');
 for ($i = 0; $i < $testingSize; $i++) {
-  $list->get('key' . $i);
+    $list->get('key' . $i);
 }
 Benchmark::end('Hashtable - get');
 
 echo "Testing Hashtable - update\n";
 Benchmark::start('Hashtable - update');
 for ($i = 0; $i < $testingSize; $i++) {
-  $list->update('key' . $i, ['money' => $testingSize - $i]);
+    $list->update('key' . $i, ['money' => $testingSize - $i]);
 }
 Benchmark::end('Hashtable - update');
 
@@ -34,7 +34,7 @@ $memoryUsage = Benchmark::memory();
 echo "Testing Hashtable - delete\n";
 Benchmark::start('Hashtable - delete');
 for ($i = 0; $i < $testingSize; $i++) {
-  $list->delete('key' . $i);
+    $list->delete('key' . $i);
 }
 Benchmark::end('Hashtable - delete');
 
