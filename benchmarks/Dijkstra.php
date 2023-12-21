@@ -79,10 +79,8 @@ $result = dijkstra($graph, 0, 9999);
 Benchmark::end('Dijkstra (a least one edge coming to it)');
 
 
-// Dijkstra called random and 10000 time
-// build random array of 10000 items with random vertexes
 $randomVertexes = [];
-for ($i = 0; $i < 1000; $i++) {
+for ($i = 0; $i < 10; $i++) {
     $randomVertex1 = $graph->getVertex(rand(0, $testingSize - 1));
     $randomVertex2 = $graph->getVertex(rand(0, $testingSize - 1));
     
@@ -92,11 +90,11 @@ for ($i = 0; $i < 1000; $i++) {
     ];
 }
 
-Benchmark::start('Dijkstra (called random vertex 10000 times)');
-for ($i = 0; $i < 1000; $i++) {
+Benchmark::start('Dijkstra (called random vertex 10 times)');
+for ($i = 0; $i < 10; $i++) {
     $result = dijkstra($graph, $randomVertexes[$i][0], $randomVertexes[$i][1]);
 }
-Benchmark::end('Dijkstra (called random vertex 10000 times)');
+Benchmark::end('Dijkstra (called random vertex 10 times)');
 
 
 echo PHP_EOL;
