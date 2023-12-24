@@ -1,24 +1,28 @@
 <?php
 
-require_once __DIR__ . '/cases/avltree/AVLTree.php';
-
 use Cases\AVLTree;
+
+require_once __DIR__ . '/cases/avltree/AVLTree.php';
 
 // Setup trees from data_sorteren.json
 $jsonData = json_decode(file_get_contents(__DIR__ . '/assets/json/dataset_sorteren.json'), true);
 
-// $jsonKeys = array_keys($jsonData);
-// foreach ($jsonData as $key => $items) {
-//     $$key = new AVLTree();
-    
-//     foreach ($items as $value) {
-//         try {
-//             $$key->insert($value);
-//         } catch (\Throwable $th) {
-//             // Nothing to do...
-//         }
-//     }
-// }
+
+$jsonValues = [];
+foreach ($jsonData as $key => $data) {
+    $$key = new AVLTree();
+
+    foreach ($data as $value) {
+        try {
+            $$key->insert($value);
+        } catch (\Throwable $th) {
+            // Nothing to do...
+        }
+    }
+
+    $jsonValues[$key] = json_encode($$key->toArray());
+}
+
 ?>
 
 
@@ -30,41 +34,50 @@ $jsonData = json_decode(file_get_contents(__DIR__ . '/assets/json/dataset_sorter
         <link rel='stylesheet' href='./assets/css/treant.css'>
 
         <script src='./assets/js/jquery.min.js'></script>
-        <script src='./assets/js/raphael.js'></script>
-        <script src='./assets/js/treant.js'></script>
+        <link rel="stylesheet" href="./assets/css/treeflex.css">
     </head>
     <body>
         <div class="row">
-            <?php foreach ($jsonData as $key => $values) {?>
+            <?php foreach ($jsonValues as $key => $values) {?>
                 <div class="col-12 text-center">
+
                     <h3><?= $key ?></h3>
-                    <div id="tree-container-<?= $key ?>"></div>
+                    <div id="tree-container-<?= $key ?>" class="tf-tree">
+                        <ul></ul>
+                    </div>
                     <script>
 
                         $(() => {
-                            $.ajax({
-                                url: '/avl-ajax-dataset.php',
-                                method: 'GET',
-                                data: {
-                                    key: '<?= $key ?>'
-                                },
-                                dataType: 'json',
-                                success: function(data) {
-                                    if (data !== null) {
-                                        console.log('<?= $key ?>', data);
-                                        var AVLTreeConfig = {
-                                            chart: {
-                                                container: "#tree-container-<?= $key ?>",
-                                            },
-                                            
-                                            nodeStructure: data
-                                        };
-                                        var AVLTree = new Treant(AVLTreeConfig);
-                                    }
-
-                                }
-                            });
+                            let tree = document.getElementById('tree-container-<?= $key ?>');
+                            let myData = <?= $values ?>;
+                            console.log(myData);
+                            if (myData !== null) {
+                                addNode(myData, tree);
+                            }
                         });
+
+                        function addNode(child, parent)
+                        {
+                            let li = document.createElement('li');
+                            let span = document.createElement('span');
+
+                            span.classList.add('tf-nc');
+                            span.innerHTML = child.text.name;
+
+                            li.appendChild(span);
+
+                            if (child.children.length > 0) {
+                                let ul = document.createElement('ul');
+                                li.appendChild(ul);
+
+                                for (let index = 0; index < child.children.length; index++) {
+                                    const element = child.children[index];
+                                    addNode(element, ul);
+                                }
+                            }
+
+                            parent.appendChild(li);
+                        }
 
                     </script>
                 </div>
