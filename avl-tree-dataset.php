@@ -49,10 +49,11 @@ foreach ($jsonData as $key => $data) {
 
                         $(() => {
                             let tree = document.getElementById('tree-container-<?= $key ?>');
+                            let ul = tree.querySelector('ul');
                             let myData = <?= $values ?>;
                             console.log(myData);
                             if (myData !== null) {
-                                addNode(myData, tree);
+                                addNode(myData, ul);
                             }
                         });
 
