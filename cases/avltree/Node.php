@@ -4,7 +4,7 @@ namespace Cases;
 
 class Node
 {
-    public int $key;
+    public float $key;
     public ?Node $left;
     public ?Node $right;
     public int $height;
