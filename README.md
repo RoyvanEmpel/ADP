@@ -217,3 +217,32 @@ De quick sort is een `O(N log N)` operatie.
 - **Time - get**: `73.963 sec.`
 - **Time - update**: `74.800 sec.`
 - **Time - delete**: `47.111 sec.`
+
+### Graph
+
+**Dataset**: `10.000` items in de array
+
+- **Time - create vertexes**: `0.002 sec.`
+- **Time - create edges (at least one edge leaving from it)**: `0.009 sec.`
+- **Time - create edges (a least one edge coming to it)**: `0.008 sec.`
+
+### Dijkstra
+
+**Dataset**: `10.000` items in de array
+
+- **Time - dijkstra**: `0.252 sec.`
+- **Time - dijkstra (at least one edge leaving from it)**: `0.434 sec.`
+- **Time - dijkstra (a least one edge coming to it)**: `0.454 sec.`
+- **Time - dijkstra (called random vertex 10 times)**: `4.477 sec.`
+
+### AVL Tree
+De AVL Tree is een `O(log N)` operatie.
+
+**Dataset**: `10.000` items in de array
+
+- **Time - add**: `0.027 sec.`
+- **Time - search**: `0.004 sec.`
+- **Time - delete**: `0.019 sec.`
+- **Time - add random**: `0.028 sec.`
+- **Time - search random**: `0.003 sec.`
+- **Time - delete random**: `0.022 sec.`
