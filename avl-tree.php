@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/cases/avltree/AVLTree.php';
 
+use Cases\AVLTree;
+
 $avl = new AVLTree();
 $keys = [50, 25, 75, 15, 35, 60, 120, 10, 68, 90, 125, 83, 100];
 
@@ -9,7 +11,7 @@ foreach ($keys as $key) {
     $avl->insert($key);
 }
 
-$json = json_encode($avl->toJSON());
+$json = json_encode($avl->toArray());
 
 ?>
 

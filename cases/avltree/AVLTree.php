@@ -146,33 +146,33 @@ class AVLTree
     }
 
 
-    public function toJSON() {
-        return $this->generateJSON($this->root);
+    public function toArray() {
+        return $this->generateArray($this->root);
     }
 
-    private function generateJSON($node) {
+    private function generateArray($node) {
         if (!$node) {
             return null;
         }
     
-        $jsonNode = [
+        $item = [
             'text' => [
                 'name' => $node->key
             ],
             'children' => []
         ];
     
-        $leftChild = $this->generateJSON($node->left);
-        $rightChild = $this->generateJSON($node->right);
+        $leftChild = $this->generateArray($node->left);
+        $rightChild = $this->generateArray($node->right);
     
         if ($leftChild) {
-            $jsonNode['children'][] = $leftChild;
+            $item['children'][] = $leftChild;
         }
     
         if ($rightChild) {
-            $jsonNode['children'][] = $rightChild;
+            $item['children'][] = $rightChild;
         }
     
-        return $jsonNode;
+        return $item;
     }
 }
