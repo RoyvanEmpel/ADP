@@ -7,18 +7,18 @@ use Cases\AVLTree;
 // Setup trees from data_sorteren.json
 $jsonData = json_decode(file_get_contents(__DIR__ . '/assets/json/dataset_sorteren.json'), true);
 
-$jsonKeys = array_keys($jsonData);
-foreach ($jsonData as $key => $items) {
-    $$key = new AVLTree();
+// $jsonKeys = array_keys($jsonData);
+// foreach ($jsonData as $key => $items) {
+//     $$key = new AVLTree();
     
-    foreach ($items as $value) {
-        try {
-            $$key->insert($value);
-        } catch (\Throwable $th) {
-            // Nothing to do...
-        }
-    }
-}
+//     foreach ($items as $value) {
+//         try {
+//             $$key->insert($value);
+//         } catch (\Throwable $th) {
+//             // Nothing to do...
+//         }
+//     }
+// }
 ?>
 
 
@@ -35,22 +35,37 @@ foreach ($jsonData as $key => $items) {
     </head>
     <body>
         <div class="row">
-            <?php foreach ($jsonKeys as $key) {
-                $data = $$key->toArray(); 
-                ?>
-                
-                <div class="col-md-6 text-center">
+            <?php foreach ($jsonData as $key => $values) {?>
+                <div class="col-12 text-center">
                     <h3><?= $key ?></h3>
                     <div id="tree-container-<?= $key ?>"></div>
                     <script>
-                        var AVLTreeConfig = {
-                            chart: {
-                                container: "#tree-container-<?= $key ?>",
-                            },
-                            
-                            nodeStructure: <?= json_encode($data) ?>
-                        };
-                        var AVLTree = new Treant(AVLTreeConfig);
+
+                        $(() => {
+                            $.ajax({
+                                url: '/avl-ajax-dataset.php',
+                                method: 'GET',
+                                data: {
+                                    key: '<?= $key ?>'
+                                },
+                                dataType: 'json',
+                                success: function(data) {
+                                    if (data !== null) {
+                                        console.log('<?= $key ?>', data);
+                                        var AVLTreeConfig = {
+                                            chart: {
+                                                container: "#tree-container-<?= $key ?>",
+                                            },
+                                            
+                                            nodeStructure: data
+                                        };
+                                        var AVLTree = new Treant(AVLTreeConfig);
+                                    }
+
+                                }
+                            });
+                        });
+
                     </script>
                 </div>
             <?php } ?>

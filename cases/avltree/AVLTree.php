@@ -3,6 +3,7 @@
 namespace Cases;
 
 use Exception;
+use SplStack;
 
 require_once 'Node.php';
 
@@ -147,32 +148,28 @@ class AVLTree
 
 
     public function toArray() {
-        return $this->generateArray($this->root);
+        return $this->nodeToArray($this->root);
     }
-
-    private function generateArray($node) {
-        if (!$node) {
+    
+    private function nodeToArray($node) {
+        if ($node === null) {
             return null;
         }
     
-        $item = [
-            'text' => [
-                'name' => $node->key
-            ],
+        $result = [
+            'text' => ['name' => $node->key],
             'children' => []
         ];
     
-        $leftChild = $this->generateArray($node->left);
-        $rightChild = $this->generateArray($node->right);
-    
-        if ($leftChild) {
-            $item['children'][] = $leftChild;
+        if ($node->left !== null) {
+            $result['children'][] = $this->nodeToArray($node->left);
         }
     
-        if ($rightChild) {
-            $item['children'][] = $rightChild;
+        if ($node->right !== null) {
+            $result['children'][] = $this->nodeToArray($node->right);
         }
     
-        return $item;
+        return $result;
     }
+    
 }
