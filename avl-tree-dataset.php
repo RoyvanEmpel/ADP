@@ -51,19 +51,30 @@ foreach ($jsonData as $key => $data) {
                             let tree = document.getElementById('tree-container-<?= $key ?>');
                             let ul = tree.querySelector('ul');
                             let myData = <?= $values ?>;
-                            console.log(myData);
                             if (myData !== null) {
-                                addNode(myData, ul);
+                                addNode<?= $key ?>(myData, ul);
                             }
                         });
 
-                        function addNode(child, parent)
+                        function addNode<?= $key ?>(child, parent)
                         {
                             let li = document.createElement('li');
                             let span = document.createElement('span');
 
                             span.classList.add('tf-nc');
                             span.innerHTML = child.text.name;
+
+                            span.onclick = function() {
+                                let treeding = document.getElementById('tree-container-<?= $key ?>');
+                                
+                                let parent = this.parentElement.parentElement.parentElement;
+                                let rect = parent.getBoundingClientRect();
+                                
+                                treeding.scrollTo({
+                                    left: (rect.width / 2) - (window.innerWidth / 2),
+                                    behavior: 'smooth'
+                                });
+                            };
 
                             li.appendChild(span);
 
@@ -73,7 +84,7 @@ foreach ($jsonData as $key => $data) {
 
                                 for (let index = 0; index < child.children.length; index++) {
                                     const element = child.children[index];
-                                    addNode(element, ul);
+                                    addNode<?= $key ?>(element, ul);
                                 }
                             }
 
