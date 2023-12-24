@@ -1,5 +1,9 @@
 <?php
 
+namespace Cases;
+
+use Exception;
+
 require_once 'Node.php';
 
 class AVLTree

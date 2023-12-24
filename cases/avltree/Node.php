@@ -1,5 +1,7 @@
 <?php
 
+namespace Cases;
+
 class Node
 {
     public int $key;

@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/cases/tree/AVLTree.php';
+require_once __DIR__ . '/cases/avltree/AVLTree.php';
 
 try {
     $avl = new AVLTree();
