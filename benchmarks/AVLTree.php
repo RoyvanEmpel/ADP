@@ -58,6 +58,22 @@ foreach ($testData as $i) {
 }
 Benchmark::end('AVLTree - search random');
 
+
+echo "Testing AVLTree - findMin\n";
+Benchmark::start('AVLTree - findMin');
+for ($i = 0; $i < $testingSize; $i++) { 
+    $tree->findMin();
+}
+Benchmark::end('AVLTree - findMin');
+
+
+echo "Testing AVLTree - findMax\n";
+Benchmark::start('AVLTree - findMax');
+for ($i = 0; $i < $testingSize; $i++) { 
+    $tree->findMax();
+}
+Benchmark::end('AVLTree - findMax');
+
 $memoryUsage = Benchmark::memory();
 
 shuffle($testData);
@@ -68,8 +84,6 @@ foreach ($testData as $i) {
     $tree->delete($i);
 }
 Benchmark::end('AVLTree - delete random');
-
-
 
 echo PHP_EOL;
 echo PHP_EOL;
