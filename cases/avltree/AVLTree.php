@@ -28,6 +28,34 @@ class AVLTree
         return !$node || !$node->left ? $node : $this->getMinNode($node->left);
     }
 
+    public function findMin()
+    {
+        if ($this->root === null) {
+            throw new Exception("The tree is empty");
+        }
+
+        $current = $this->root;
+        while ($current->left !== null) {
+            $current = $current->left;
+        }
+        
+        return $current->key;
+    }
+
+    public function findMax()
+    {
+        if ($this->root === null) {
+            throw new Exception("The tree is empty");
+        }
+
+        $current = $this->root;
+        while ($current->right !== null) {
+            $current = $current->right;
+        }
+        
+        return $current->key;
+    }
+
     public function search($key) {
         $x = $this->root;
         while ($x !== null && $key != $x->key) {
