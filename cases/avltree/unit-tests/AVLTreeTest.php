@@ -85,6 +85,46 @@ class AVLTreeTest extends TestCase
         $this->assertEquals(10, $minNode->key);
     }
 
+    public function testFindMin()
+    {
+        $this->avlTree->insert(30);
+        $this->avlTree->insert(20);
+        $this->avlTree->insert(10);
+
+        $minNode = $this->avlTree->findMin();
+        $this->assertEquals(10, $minNode);
+    }
+
+    public function testFindMinWithAlotOfData()
+    {
+        for ($i = 0; $i < 1000; $i++) {
+            $this->avlTree->insert($i);
+        }
+
+        $minNode = $this->avlTree->findMin();
+        $this->assertEquals(0, $minNode);
+    }
+
+    public function testFindMax()
+    {
+        $this->avlTree->insert(30);
+        $this->avlTree->insert(20);
+        $this->avlTree->insert(10);
+
+        $maxNode = $this->avlTree->findMax();
+        $this->assertEquals(30, $maxNode);
+    }
+
+    public function testFindMaxWithAlotOfData()
+    {
+        for ($i = 0; $i < 1000; $i++) {
+            $this->avlTree->insert($i);
+        }
+
+        $maxNode = $this->avlTree->findMax();
+        $this->assertEquals(999, $maxNode);
+    }
+
     public function testtoArray()
     {
         $this->avlTree->insert(10);
