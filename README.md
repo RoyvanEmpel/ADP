@@ -245,4 +245,6 @@ De AVL Tree is een `O(log N)` operatie.
 - **Time - delete**: `0.019 sec.`
 - **Time - add random**: `0.028 sec.`
 - **Time - search random**: `0.003 sec.`
+- **Time - findMin**: `0.001 sec.`
+- **Time - findMax**: `0.002 sec.`
 - **Time - delete random**: `0.022 sec.`
