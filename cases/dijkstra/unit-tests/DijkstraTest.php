@@ -33,7 +33,7 @@ class DijkstraTest extends TestCase
     {
         $this->importEdgeLine($this->dataset['lijnlijst']);
 
-        $result = dijkstra($this->graph, 0, 6);
+        $result = dijkstra($this->graph, 0);
 
         echo PHP_EOL;
         echo "EdgeLine: " . PHP_EOL;
@@ -48,7 +48,7 @@ class DijkstraTest extends TestCase
     {
         $this->importEdgeLine($this->dataset['lijnlijst_gewogen']);
 
-        $result = dijkstra($this->graph, 0, 4);
+        $result = dijkstra($this->graph, 0);
 
         echo PHP_EOL;
         echo "EdgeLine Weighted: " . PHP_EOL;
@@ -97,7 +97,7 @@ class DijkstraTest extends TestCase
     {
         $this->importAdjacencyList($this->dataset['verbindingslijst']);
 
-        $result = dijkstra($this->graph, 0, 6);
+        $result = dijkstra($this->graph, 0);
 
         echo PHP_EOL;
         echo "Adjacency List: " . PHP_EOL;
@@ -112,7 +112,7 @@ class DijkstraTest extends TestCase
     {
         $this->importAdjacencyList($this->dataset['verbindingslijst_gewogen']);
 
-        $result = dijkstra($this->graph, 0, 4);
+        $result = dijkstra($this->graph, 0);
 
         echo PHP_EOL;
         echo "Adjacency List Weighted: " . PHP_EOL;
@@ -161,7 +161,7 @@ class DijkstraTest extends TestCase
     {
         $this->importAdjacencyMatrix($this->dataset['verbindingsmatrix']);
 
-        $result = dijkstra($this->graph, 0, 6);
+        $result = dijkstra($this->graph, 0);
 
         echo PHP_EOL;
         echo "Adjacency Matrix: " . PHP_EOL;
@@ -176,7 +176,7 @@ class DijkstraTest extends TestCase
     {
         $this->importAdjacencyMatrix($this->dataset['verbindingsmatrix_gewogen']);
 
-        $result = dijkstra($this->graph, 0, 4);
+        $result = dijkstra($this->graph, 0);
 
         echo PHP_EOL;
         echo "Adjacency Matrix Weighted: " . PHP_EOL;

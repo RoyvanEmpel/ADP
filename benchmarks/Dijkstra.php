@@ -24,7 +24,7 @@ for ($i = 0; $i < $testingSize; $i++) {
 
 Benchmark::start('Test dijkstra size 10000');
 // dijkstra
-$result = dijkstra($graph, 0, 9999);
+$result = dijkstra($graph, 0);
 
 Benchmark::end('Test dijkstra size 10000');
 
@@ -44,7 +44,7 @@ for ($i = 0; $i < $testingSize; $i++) {
 }
 
 Benchmark::start('Dijkstra (at least one edge leaving from it)');
-$result = dijkstra($graph, 0, 9999);
+$result = dijkstra($graph, 0);
 Benchmark::end('Dijkstra (at least one edge leaving from it)');
 
 // reset
@@ -75,7 +75,7 @@ for ($i = 0; $i < $testingSize; $i++) {
 }
 
 Benchmark::start('Dijkstra (a least one edge coming to it)');
-$result = dijkstra($graph, 0, 9999);
+$result = dijkstra($graph, 0);
 Benchmark::end('Dijkstra (a least one edge coming to it)');
 
 
@@ -92,7 +92,7 @@ for ($i = 0; $i < 10; $i++) {
 
 Benchmark::start('Dijkstra (called random vertex 10 times)');
 for ($i = 0; $i < 10; $i++) {
-    $result = dijkstra($graph, $randomVertexes[$i][0], $randomVertexes[$i][1]);
+    $result = dijkstra($graph, $randomVertexes[$i][0]);
 }
 Benchmark::end('Dijkstra (called random vertex 10 times)');
 
